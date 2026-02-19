@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+// Tab Component
+.tab-wrap {
+  .tab-container {
+    display: flex;
+    width: auto;
+    height: 48px;
+    gap: 0 16px;
+    border-bottom: 1px solid #dce2ed;
+    position: relative;
+
+    .tab-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      cursor: pointer;
+      position: relative;
+      padding: 0 12px;
+      border: none;
+      background: none;
+      min-width: 106px;
+
+      // 기본 상태 (비활성)
+      .tab-title {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: -0.08px;
+        color: #8b95a9;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      // 활성 상태
+      &.active {
+        .tab-title {
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 26px;
+          letter-spacing: -0.08px;
+          color: #005df9;
+        }
+      }
+
+      // 호버 효과
+      &:hover:not(.active) {
+        .tab-title {
+          color: #242a34;
+        }
+      }
+
+      // 텍스트 길이에 따른 자동 크기 조정
+      flex-shrink: 0;
+      width: auto;
+    }
+
+    // 활성 라인
+    .active-line {
+      position: absolute;
+      bottom: 0;
+      height: 2px;
+      background-color: #005df9;
+      z-index: 1;
+      border-radius: 1px;
+      opacity: 0;
+      left: 0;
+      width: 0;
+    }
+  }
+}

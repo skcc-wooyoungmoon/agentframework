@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+{
+  "abbreviations": {
+    "validation": "validate",
+    "configuration": "config",
+    "parameter": "param",
+    "information": "info",
+    "administrator": "admin",
+    "authentication": "auth",
+    "authorization": "auth",
+    "initialization": "init"
+  },
+}

@@ -1,0 +1,23 @@
+.tagify-input {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.tagify__input {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.tagify__tag {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.tagify {
+  padding: 0 !important;
+  height: auto !important;
+}

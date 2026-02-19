@@ -1,0 +1,1 @@
+export { UICardListNoData } from './component';

@@ -1,0 +1,132 @@
+/* ReactFlow 캔버스 스타일 */
+.react-flow__node {
+  z-index: 1 !important;
+}
+
+.react-flow__node.selected {
+  z-index: 2 !important;
+}
+
+/* ReactFlow 뷰포트 확장 */
+.react-flow__viewport {
+  overflow: visible !important;
+}
+
+.react-flow__renderer {
+  overflow: visible !important;
+}
+
+.react-flow__pane {
+  overflow: visible !important;
+}
+
+/* ReactFlow 배경 스타일 */
+.react-flow__background {
+  background-color: #f8fafc;
+  background-image: radial-gradient(circle at 1px 1px, #e2e8f0 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* ReactFlow 컨트롤 스타일 */
+.react-flow__controls {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.react-flow__controls button {
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.react-flow__controls button:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* ReactFlow 미니맵 스타일 */
+.react-flow__minimap {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: white;
+}
+
+/* 핸들 스타일 */
+.react-flow__handle {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #6b7280;
+  background: #6b7280;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+}
+
+.react-flow__handle:hover {
+  background: #4b5563;
+  border-color: #4b5563;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+/* 엣지 스타일 */
+.react-flow__edge-path {
+  stroke: #6b7280;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #3b82f6;
+  stroke-width: 3;
+}
+
+/* 연결선 스타일 */
+.react-flow__connection-line {
+  stroke: #6b7280;
+  stroke-width: 3;
+}
+
+/* 엣지 마커 스타일 */
+.react-flow__edge .react-flow__edge-path {
+  marker-end: url(#react-flow__arrowclosed);
+}
+
+.react-flow__arrowclosed {
+  fill: #6b7280;
+}
+
+.agent-card {
+  border: 1px solid transparent;
+  transition:
+    border-color 0.3s ease,
+    border-width 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.agent-card.agent-card--running {
+  border-color: #84cc16 !important; /* 연두색: 실행 중 */
+  border-width: 4px !important; /* 🔥 두께를 2px에서 4px로 증가 */
+  box-shadow: 0 0 0 2px rgba(132, 204, 22, 0.15);
+}
+
+.agent-card.agent-card--completed {
+  border-color: #3e97ff !important; /* 파란색: 완료 */
+  border-width: 4px !important; /* 🔥 두께를 2px에서 4px로 증가 */
+  box-shadow: 0 0 0 2px rgba(62, 151, 255, 0.15);
+}
+
+.agent-card.agent-card--error {
+  border-color: #e21717 !important;
+  border-width: 4px !important; /* 🔥 두께를 2px에서 4px로 증가 */
+  box-shadow: 0 0 0 2px rgba(226, 23, 23, 0.15);
+}
+
+.react-flow__panel.bottom {
+  bottom: 90px !important;
+}

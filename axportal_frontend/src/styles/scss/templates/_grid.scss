@@ -1,0 +1,323 @@
+@charset "UTF-8";
+
+.article-grid {
+  & > .article-header {
+    display: flex;
+    justify-content: space-between;
+    & > .grid-header-left {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .textfield {
+    height: 40px;
+    input,
+    input::placeholder {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  .ui-dropdown-text {
+    font-size: 14px !important;
+    line-height: 20px;
+  }
+}
+
+/* Custom Grid Styles - AG Grid 기본 스타일 오버라이드 */
+.ui-data-grp-ftr {
+  margin-top: 24px;
+}
+.ui-data-has-btn {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  gap: 8px;
+}
+.custom-grid,
+.ag-theme-quartz,
+.ag-root-wrapper,
+div[class*='ag-theme'],
+div[class*='ag-root'] {
+  --ag-header-height: 40px !important;
+  --ag-row-height: 48px !important;
+  --ag-list-item-height: 48px !important;
+  --ag-border-color: transparent !important;
+  --ag-header-background-color: #ffffff !important;
+  --ag-header-foreground-color: var(--color-gray-800) !important;
+  --ag-background-color: var(--color-white) !important;
+  --ag-odd-row-background-color: var(--color-gray-100) !important;
+  --ag-row-hover-color: var(--color-blue-100) !important;
+  --ag-font-family: var(--font-family-sans) !important;
+  --ag-font-size: 14px !important;
+  width: 100% !important;
+
+  .ag-root-wrapper {
+    border: none !important;
+  }
+
+  .ag-header {
+    border-bottom: 1px solid #689eff !important;
+    background-color: #ffffff !important;
+    height: 40px !important;
+    min-height: 40px !important;
+  }
+
+  &.empty-state {
+    .ag-pinned-left-header .ag-header-row,
+    .ag-pinned-right-header .ag-header-row,
+    .ag-header.ag-header-allow-overflow {
+      border-bottom: 1px solid #689eff !important;
+    }
+  }
+
+  /* AG Grid 페이지네이션 패널 완전 제거 */
+  .ag-paging-panel {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .ag-pagination {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .ag-header-cell {
+    border: none;
+    padding: 8px 12px 8px 16px;
+    background-color: #ffffff;
+    padding-left: calc(var(--ag-cell-horizontal-padding) - 1px + var(--ag-row-group-indent-size) * var(--ag-indentation-level)) !important;
+    padding-right: calc(var(--ag-cell-horizontal-padding) - 1px) !important;
+    padding-left: 13px !important;
+  }
+
+  .ag-cell {
+    padding: 14px 16px;
+    min-height: 48px;
+  }
+
+  /* AG Grid 체크박스를 UICheckbox2 box 스타일로 변경 */
+  .ag-checkbox-input-wrapper {
+    /* 기본 AG Grid 스타일 덮어쓰기 */
+    width: 24px !important;
+    height: 24px !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+
+    /* AG Grid 기본 가상 요소 숨기기 */
+    &::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    /* UICheckbox2 box 스타일의 ::before 적용 */
+    &::before {
+      content: '' !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      background-size: contain !important;
+      background-image: url(/public/assets/images/system/ico-system-24-box-unselected.svg) !important;
+      display: block !important;
+      opacity: 1 !important;
+    }
+
+    /* checked 상태 */
+    &.ag-checked::before {
+      background-image: url(/public/assets/images/system/ico-system-24-box-selected.svg) !important;
+    }
+
+    /* indeterminate 상태 */
+    &.ag-indeterminate::before {
+      background-image: url(/public/assets/images/system/ico-system-24-box-unselected.svg) !important;
+    }
+
+    /* disabled 상태 */
+    &.ag-disabled::before {
+      background-image: url(/public/assets/images/system/ico-system-24-box-disabled.svg) !important;
+    }
+
+    /* checked + disabled 상태 */
+    &.ag-checked.ag-disabled::before {
+      background-image: url(/public/assets/images/system/ico-system-24-box-disabled-selected.svg) !important;
+    }
+
+    /* input 요소 스타일 */
+    input[type='checkbox'] {
+      opacity: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 !important;
+      cursor: pointer !important;
+    }
+  }
+
+  /* AG Grid 헤더 체크박스 마진 제거 */
+  .ag-ltr .ag-header-select-all {
+    margin-right: 0 !important;
+  }
+
+  /* AG Grid NO 컬럼 헤더 텍스트 패딩 추가 - 다중선택 그리드에서만 */
+  .custom-grid:not(.aggrid-single-checkbox) .ag-theme-quartz[class*='ag-checkbox'] .ag-header-cell[col-id='no'] .ag-header-cell-text,
+  .custom-grid:not(.aggrid-single-checkbox) .ag-root-wrapper:has(.ag-checkbox-input-wrapper) .ag-header-cell[col-id='no'] .ag-header-cell-text {
+    padding-left: 5px !important;
+  }
+
+  /* AG Grid 헤더 라디오 버튼 패딩 */
+  .ag-header-cell-comp-wrapper label.rdo {
+    padding-left: 3px !important;
+  }
+
+  /* AG Grid 체크박스 컬럼 너비 56px로 고정 */
+  .ag-header-cell[col-id='ag-Grid-SelectionColumn'],
+  .ag-cell[col-id='ag-Grid-SelectionColumn'] {
+    width: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+  }
+
+  .ag-cell[col-id='ag-Grid-SelectionColumn'] {
+    min-height: 48px !important;
+  }
+
+  /* AG Grid 평가상세 컬럼 패딩 제거 */
+  .ag-cell[col-id='evalDetail'] {
+    padding-left: 0 !important;
+  }
+}
+
+/* 단일선택 그리드: 체크박스를 라디오 버튼 스타일로 변경 */
+.aggrid-single-checkbox {
+  /* 기본 상태 - 라디오 버튼 스타일로 변경 */
+  .custom-grid .ag-checkbox-input-wrapper::before,
+  .ag-theme-quartz .ag-checkbox-input-wrapper::before,
+  .ag-root-wrapper .ag-checkbox-input-wrapper::before,
+  div[class*='ag-theme'] .ag-checkbox-input-wrapper::before,
+  div[class*='ag-root'] .ag-checkbox-input-wrapper::before {
+    background-image: url(/public/assets/images/system/ico-system-24-radio-unselected.svg) !important;
+  }
+
+  /* checked 상태 - 라디오 선택됨 */
+  .custom-grid .ag-checkbox-input-wrapper.ag-checked::before,
+  .ag-theme-quartz .ag-checkbox-input-wrapper.ag-checked::before,
+  .ag-root-wrapper .ag-checkbox-input-wrapper.ag-checked::before,
+  div[class*='ag-theme'] .ag-checkbox-input-wrapper.ag-checked::before,
+  div[class*='ag-root'] .ag-checkbox-input-wrapper.ag-checked::before {
+    background-image: url(/public/assets/images/system/ico-system-24-radio-selected.svg) !important;
+  }
+
+  /* indeterminate 상태 - 라디오 선택됨 */
+  .custom-grid .ag-checkbox-input-wrapper.ag-indeterminate::before,
+  .ag-theme-quartz .ag-checkbox-input-wrapper.ag-indeterminate::before,
+  .ag-root-wrapper .ag-checkbox-input-wrapper.ag-indeterminate::before,
+  div[class*='ag-theme'] .ag-checkbox-input-wrapper.ag-indeterminate::before,
+  div[class*='ag-root'] .ag-checkbox-input-wrapper.ag-indeterminate::before {
+    background-image: url(/public/assets/images/system/ico-system-24-radio-selected.svg) !important;
+  }
+
+  /* disabled 상태 - 라디오 비활성화 */
+  .custom-grid .ag-checkbox-input-wrapper.ag-disabled::before,
+  .ag-theme-quartz .ag-checkbox-input-wrapper.ag-disabled::before,
+  .ag-root-wrapper .ag-checkbox-input-wrapper.ag-disabled::before,
+  div[class*='ag-theme'] .ag-checkbox-input-wrapper.ag-disabled::before,
+  div[class*='ag-root'] .ag-checkbox-input-wrapper.ag-disabled::before {
+    background-image: url(/public/assets/images/system/ico-system-24-radio-disabled.svg) !important;
+  }
+
+  /* checked + disabled 상태 - 라디오 비활성화 선택됨 */
+  .custom-grid .ag-checkbox-input-wrapper.ag-checked.ag-disabled::before,
+  .ag-theme-quartz .ag-checkbox-input-wrapper.ag-checked.ag-disabled::before,
+  .ag-root-wrapper .ag-checkbox-input-wrapper.ag-checked.ag-disabled::before,
+  div[class*='ag-theme'] .ag-checkbox-input-wrapper.ag-checked.ag-disabled::before,
+  div[class*='ag-root'] .ag-checkbox-input-wrapper.ag-checked.ag-disabled::before {
+    background-image: url(/public/assets/images/system/ico-system-24-radio-disabled-selected.svg) !important;
+  }
+}
+
+/* AG Grid 전역 스타일 추가 정의 */
+.ag-theme-quartz .ag-header,
+.ag-root-wrapper .ag-header,
+div[class*='ag-theme'] .ag-header,
+div[class*='ag-root'] .ag-header {
+  border-bottom: 1px solid #689eff !important;
+  background-color: #ffffff !important;
+  height: 40px !important;
+  min-height: 40px !important;
+}
+
+.ui-grid {
+  &-cardlist {
+    & > ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      & > li {
+        > ul {
+          height: 100%;
+          > li {
+            height: 100%;
+            cursor: pointer;
+          }
+        }
+        & > li {
+          position: relative;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+.ag-header-cell.ag-header-parent-hidden.text-center.ag-focus-managed {
+  .ag-header-cell-comp-wrapper {
+    .ag-cell-label-container {
+      .ag-header-cell-label {
+        justify-content: flex-start !important;
+        padding-left: 5px;
+      }
+    }
+  }
+}
+.custom-grid:not(.aggrid-single-checkbox) .ag-header-cell.ag-column-first.ag-header-parent-hidden.ag-focus-managed {
+  padding-left: 16px !important;
+}
+
+// no-data 케이스
+.custom-grid {
+  &.empty-data {
+    .ag-body {
+      height: 315px !important;
+    }
+  }
+}
+
+.grid {
+  &-layout {
+    display: grid;
+    grid-template-columns: 1214px 296px;
+    gap: 0 42px;
+    align-items: flex-start;
+  }
+  &-article {
+    .article-buton-group {
+      margin-top: 48px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+  &-right-sticky {
+    position: sticky;
+    top: 0;
+    padding-top: 32px;
+    height: fit-content;
+    align-self: flex-start;
+  }
+}

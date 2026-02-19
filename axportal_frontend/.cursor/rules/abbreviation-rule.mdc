@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+{
+  "abbreviations": {
+    "administrator": "admin",
+    "approval": "appr",
+    "authentication": "auth",
+    "authorization": "auth",
+    "catalog": "ctlg",
+    "configuration": "config",
+    "deployment": "deploy",
+    "evaluation": "eval",
+    "history": "hist",
+    "information": "info",
+    "initialization": "init",
+    "inference": "infer",
+    "management": "mgmt",
+    "monitoring": "mon",
+    "parameter": "param",
+    "playground": "pg",
+    "resource": "resrc",
+    "security": "sec",
+    "storage": "stor",
+    "validation": "valid"
+  }
+}

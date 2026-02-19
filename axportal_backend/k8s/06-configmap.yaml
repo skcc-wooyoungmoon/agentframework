@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend
+  namespace: axportal
+data:
+  # Application Configuration
+  SPRING_PROFILES_ACTIVE: "edev"
+
+  # Database Configuration
+  DB_USERNAME: "postgres"
+
+  # Logging Configuration
+  LOGGING_LEVEL: "INFO"

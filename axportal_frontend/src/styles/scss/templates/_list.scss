@@ -1,0 +1,89 @@
+@charset "UTF-8";
+@import '../abstracts/mixins';
+
+.ui-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+
+  &_bullet {
+    gap: 4px;
+    & > li {
+      position: relative;
+      padding-left: 12px;
+      min-height: 20px;
+      line-height: 20px;
+      &::before {
+        position: absolute;
+        top: 8px;
+        left: 0px;
+        display: block;
+        content: '';
+        width: 4px;
+        height: 4px;
+        background-color: #576072;
+        border-radius: 4px;
+      }
+    }
+  }
+  &_important {
+    gap: 6px;
+    & > li {
+      position: relative;
+      padding-left: 22px;
+      height: 20px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: calc(50% - 8px);
+        left: 0px;
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-image: url(/public/assets/images/system/ico-system-16-info-gray.svg);
+        background-size: 16px 16px;
+      }
+    }
+  }
+  &_dash {
+    gap: 4px;
+    & > li {
+      position: relative;
+      padding-left: 12px;
+      min-height: 20px;
+      line-height: 20px;
+      &::before {
+        position: absolute;
+        top: 9px;
+        left: 0px;
+        display: block;
+        content: '';
+        width: 4px;
+        height: 1px;
+        background-color: #576072;
+      }
+    }
+  }
+}
+
+.user-profile {
+  display: grid;
+  grid-template-columns: auto 3px 1fr;
+  column-gap: 8px;
+  &-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    color: #576072;
+    &:first-child {
+      flex-basis: 80px;
+    }
+    &:last-child {
+      > div {
+        @include textEllipsisClamp(1);
+      }
+    }
+  }
+}

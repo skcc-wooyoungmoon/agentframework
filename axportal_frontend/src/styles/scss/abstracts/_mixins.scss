@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/* public ******************************************************************/
+
+///  텍스트가 너무 길 때 두줄 이상일 때 말줄임표(...)로 처리
+/// @example scss
+///   .title {
+///     @include textEllipsisClamp(2);
+///   }
+@mixin textEllipsisClamp($line) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}

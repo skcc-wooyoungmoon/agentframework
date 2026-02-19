@@ -1,0 +1,6 @@
+### Test API for Error Response with R002 code
+
+GET http://localhost:8080/api/samples/999
+Content-Type: application/json
+
+###

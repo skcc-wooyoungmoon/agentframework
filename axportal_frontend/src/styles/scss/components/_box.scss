@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+.box {
+  &-filter {
+    padding: 32px 48px;
+    // max-width: 1554px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 0 8px #1625420f;
+    background: var(--white);
+    border-radius: 16px;
+  }
+  &-fill {
+    padding: 20px 24px;
+    // max-width: 1554px;
+    background: #f3f6fb;
+    border-radius: 16px;
+  }
+  &-border {
+    padding: 24px 24px;
+    // max-width: 1554px;
+    border: 1px solid var(--gray-200);
+    background: var(--white);
+    border-radius: 16px;
+  }
+}
+
+.info-box {
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #e7edf6;
+  background-color: #f3f6fb;
+  > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+  }
+}
+
+/* Toast */
+
+.toast {
+  display: flex;
+  align-items: center;
+  width: 360px;
+  height: 56px;
+  background-color: rgba(18, 19, 21, 0.9);
+  border-radius: 8px;
+  z-index: 30000;
+  &-content {
+    width: 100%;
+  }
+}
+
+@keyframes custom-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes custom-leave {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-custom-enter {
+  animation: custom-enter 0.3s ease-out forwards;
+}
+
+.animate-custom-leave {
+  animation: custom-leave 0.3s ease-in forwards;
+}
+
+.home-guide {
+  width: 100%;
+  height: 100%;
+  background: url('/assets/images/common/img-home-guide-2601.svg') no-repeat content-box;
+  background-size: cover;
+  &-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    z-index: 9999;
+    transform: translateX(-50%);
+    cursor: pointer;
+    background-color: transparent;
+  }
+}
+
+// @media (max-width: 1918px) {
+//   .home-guide-btn {
+//     transform: translateX(-107%);
+//     height: 7%;
+//   }
+// }
+
+@media (min-width: 2200px) {
+  .home-guide {
+    background-position: 0 0;
+    background-size: cover;
+  }
+}

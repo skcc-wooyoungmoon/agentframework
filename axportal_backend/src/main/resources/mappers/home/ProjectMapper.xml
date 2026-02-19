@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace는 인터페이스의 전체 경로와 정확히 일치해야 함 -->
+<mapper namespace="com.skax.aiplatform.mapper.home.ProjectMapper">
+
+    <!-- id는 인터페이스의 메서드 이름과 정확히 일치해야 함 -->
+    <select id="findJoinProjectList" parameterType="String" resultType="com.skax.aiplatform.dto.home.response.ProjectRes">
+        SELECT M.PRJ_SEQ,
+               M.MEMBER_ID,
+               M.ROLE_SEQ,
+               P.GPO_PRJ_NM AS PRJ_NM,
+               P.DTL_CTNT,
+               P.UUID,
+               (SELECT COUNT(*) FROM GPO_PRJUSERROLE_MAP_MAS WHERE PRJ_SEQ = P.PRJ_SEQ) AS MEMBER_CNT,
+               CASE WHEN M.STATUS_NM = 'ACTIVE' THEN 1
+                    WHEN M.STATUS_NM = 'INACTIVE' THEN 0
+                    ELSE 0
+               END AS SELECTED
+        FROM GPO_PRJUSERROLE_MAP_MAS M
+                 JOIN GPO_PROJECTS_MAS P ON P.PRJ_SEQ = M.PRJ_SEQ
+        WHERE M.MEMBER_ID = #{username}
+          AND P.STATUS_NM = 'ONGOING'
+        ORDER BY M.PRJ_SEQ
+    </select>
+
+    <select id="findJoinPrivateProjectList" parameterType="String" resultType="com.skax.aiplatform.dto.home.response.ProjPrivateRes">
+        SELECT M.PRJ_SEQ,
+               M.MEMBER_ID,
+               M.ROLE_SEQ,
+               P.GPO_PRJ_NM AS PRJ_NM,
+               P.DTL_CTNT,
+               (SELECT COUNT(*) FROM GPO_PRJUSERROLE_MAP_MAS WHERE PRJ_SEQ = P.PRJ_SEQ) AS MEMBER_COUNT,
+               (SELECT JKW_NM || ' | ' || DEPT_NM FROM GPO_USERS_MAS WHERE MEMBER_ID = P.CREATED_BY) AS CREATER_INFO
+        FROM GPO_PRJUSERROLE_MAP_MAS M
+                 JOIN GPO_PROJECTS_MAS P ON P.PRJ_SEQ = M.PRJ_SEQ
+        WHERE M.MEMBER_ID = #{username}
+          AND P.STATUS_NM = 'ONGOING'
+          AND M.PRJ_SEQ != -999
+        ORDER BY M.PRJ_SEQ
+    </select>
+
+    <select id="findNotJoinProjectList" parameterType="map" resultType="com.skax.aiplatform.dto.home.response.ProjPrivateRes">
+        SELECT M1.PRJ_SEQ,
+               M1.GPO_PRJ_NM AS PRJ_NM,
+               M1.DTL_CTNT,
+               M1.FST_CREATED_AT,
+               (SELECT COUNT(*) FROM GPO_PRJUSERROLE_MAP_MAS WHERE PRJ_SEQ = M1.PRJ_SEQ)              AS MEMBER_COUNT,
+               (SELECT JKW_NM || ' | ' || DEPT_NM FROM GPO_USERS_MAS WHERE MEMBER_ID = M1.CREATED_BY) AS CREATER_INFO
+        FROM GPO_PROJECTS_MAS M1
+        WHERE M1.PRJ_SEQ NOT IN (SELECT M.PRJ_SEQ AS PRJ_SEQ
+                                 FROM GPO_PRJUSERROLE_MAP_MAS M
+                                          JOIN GPO_PROJECTS_MAS P ON P.PRJ_SEQ = M.PRJ_SEQ
+                                 WHERE M.MEMBER_ID = #{username})
+          AND M1.STATUS_NM = 'ONGOING'
+        <if test="project != null and project != ''">
+            AND UPPER(M1.GPO_PRJ_NM) LIKE '%' || UPPER(#{project}) || '%'
+        </if>
+        <if test="name != null and name != ''">
+            AND UPPER((SELECT JKW_NM || ' | ' || DEPT_NM FROM GPO_USERS_MAS WHERE MEMBER_ID = M1.CREATED_BY)) LIKE '%' || UPPER(#{name}) || '%'
+        </if>
+    </select>
+
+    <select id="findNotJoinProjectDetail" parameterType="Long" resultType="com.skax.aiplatform.dto.home.response.ProjDetailRes">
+        SELECT u.jkw_nm || ' | ' || u.dept_nm as proj_mgmte_info,
+               p.prj_seq,
+               p.fst_created_at
+        FROM gpo_users_mas u
+                 JOIN gpo_prjuserrole_map_mas upr on (u.member_id = upr.member_id)
+                 JOIN gpo_projects_mas p on (p.prj_seq = upr.prj_seq)
+        WHERE (upr.role_seq = -299 or upr.role_seq = -199)
+          AND upr.prj_seq = #{projectId}
+    </select>
+
+    <select id="findProjectUserList" parameterType="map" resultType="com.skax.aiplatform.dto.home.response.ProjUserRes">
+        select u.member_id,
+        u.jkw_nm,
+        u.dept_nm,
+        u.dmc_status,
+        u.retr_jkw_yn,
+        u.lst_login_at
+        from gpo_users_mas u
+        where u.member_id != 'admin'
+        and u.dmc_status = 'ACTIVE'
+        and u.retr_jkw_yn = 0
+        <if test="username != null and username != ''">
+            and u.member_id != #{username}
+        </if>
+        <if test="department != null and department != ''">
+            and u.dept_nm like '%' || #{department} || '%'
+        </if>
+        <if test="name != null and name != ''">
+            and u.jkw_nm like '%' || #{name} || '%'
+        </if>
+        order by u.lst_login_at desc
+    </select>
+
+    <select id="findProjectUserInfo" parameterType="map" resultType="com.skax.aiplatform.dto.common.response.MemberProjInfo">
+        select u.jkw_nm AS username, u.dept_nm, p.gpo_prj_nm AS project_nm, r.gpo_role_nm AS role_nm
+        from gpo_prjuserrole_map_mas m
+                 join gpo_users_mas u on (m.member_id = u.member_id)
+                 join gpo_projects_mas p on (m.prj_seq = p.prj_seq)
+                 join gpo_roles_mas r on (m.role_seq = r.role_seq)
+        where m.member_id = #{memberId}
+          and p.uuid = #{projectId}
+    </select>
+
+
+</mapper>

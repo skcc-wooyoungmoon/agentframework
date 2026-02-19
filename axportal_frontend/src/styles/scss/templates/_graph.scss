@@ -1,0 +1,137 @@
+// 그래프 영역
+.graphs {
+  display: flex;
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 218px;
+    &-cont {
+      width: 184px;
+      height: 128px;
+      background-color: gainsboro;
+    }
+  }
+}
+
+.graph-cont {
+  position: relative;
+  &-data {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+}
+
+.graph-legend {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.graph-label {
+  ul {
+    & > li {
+      display: flex;
+      align-items: center;
+      gap: 0 6px;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.08px;
+      font-weight: 400;
+      color: #576072;
+      & + li {
+        margin-top: 8px;
+      }
+      > span {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .dot-resources {
+        background-color: #e5eeff;
+      }
+    }
+  }
+}
+
+.circle-graph {
+  position: absolute;
+  min-width: 68px;
+  left: 55px;
+  top: 90px;
+  z-index: 5;
+  .text-center {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    &-tit,
+    &-percent {
+      color: #2670ff;
+    }
+  }
+}
+
+// horizontal chart
+.horizontal-chart {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Pretendard', sans-serif;
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    &:last-child {
+      .progress {
+        // border-bottom: 1px solid #e0e0e0;
+      }
+    }
+  }
+  .label {
+    width: 170px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .progress {
+    flex: 1;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #dce2ed;
+    // border-top: 1px solid #e0e0e0;
+    .bar {
+      height: 24px;
+      background: linear-gradient(90deg, rgba(157, 193, 255, 0.35), rgba(38, 112, 255, 0.6));
+      border-radius: 0 4px 4px 0;
+      animation: bar-fill 1.2s ease 0.1s forwards;
+    }
+  }
+  .value {
+    margin-left: 8px;
+    font-size: 14px;
+    color: #444;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--target-width);
+  }
+}
+
+.test-111 {
+  color: #000;
+  background-color: #fff;
+}

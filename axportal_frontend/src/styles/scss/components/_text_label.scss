@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.text-label {
+  display: inline-block !important;
+  padding: 0 6px;
+  width: auto;
+  height: 24px;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  &.blue {
+    background-color: #eff5ff;
+    color: #005df9;
+    border: 1px solid #cde0ff;
+  }
+  &.gray {
+    background-color: #f3f6fb;
+    color: #121315;
+    border: 1px solid #dce2ed;
+  }
+  &.tag {
+    background-color: #8b95a9;
+    color: #ffffff;
+    line-height: 24px;
+  }
+  &.violet {
+    background-color: #f7f5fe;
+    color: #9336ff;
+    border: 1px solid #edddff;
+  }
+  &.red {
+    background-color: #fff1f1;
+    color: #e21717;
+    border: 1px solid #ffc3c3;
+  }
+  &.nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 95px;
+    letter-spacing: -0.5px;
+  }
+}

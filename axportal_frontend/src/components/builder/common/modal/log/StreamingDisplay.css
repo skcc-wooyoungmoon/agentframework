@@ -1,0 +1,411 @@
+/* StreamingDisplay CSS 스타일 */
+
+.streaming-display {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border: 1px solid #dee2e6;
+  /* border-radius: 6px; */
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.status-bar {
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  /* border-radius: 6px 6px 0 0; */
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-text {
+  flex: 1;
+  font-weight: 500;
+}
+
+.content-area {
+  background: #ffffff;
+  /* border-radius: 0 0 6px 6px; */
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.updates-view {
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.raw-view {
+  padding: 12px;
+  background: #f8f8f8;
+  /* border-radius: 0 0 6px 6px; */
+  overflow-y: auto;
+  flex: 1;
+}
+
+.raw-content {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 0.85em;
+  color: #333;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.raw-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: #f8f8f8;
+}
+
+.raw-output pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 0.85em;
+  color: #333;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.stream-update {
+  padding: 8px 12px;
+  /* border-radius: 4px; */
+  font-size: 0.9em;
+  border-left: 4px solid;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* 업데이트 타입별 스타일 */
+.update-progress {
+  border-left-color: #007bff;
+  background: #f0f8ff;
+  color: #004085;
+}
+
+.update-llm-content {
+  border-left-color: #007bff;
+  background: #f0f8ff;
+  color: #004085;
+}
+
+.update-final-result {
+  border-left-color: #28a745;
+  background: #f0fff0;
+  color: #155724;
+}
+
+.update-tool-calls {
+  border-left-color: #17a2b8;
+  background: #f0faff;
+  color: #0c5460;
+}
+
+.update-updates {
+  border-left-color: #fd7e14;
+  background: #fffbf5;
+  color: #8a4100;
+}
+
+.update-error {
+  border-left-color: #dc3545;
+  background: #fff5f5;
+  color: #721c24;
+}
+
+.update-complete {
+  border-left-color: #28a745;
+  background: #f0fff0;
+  color: #155724;
+  font-weight: 500;
+}
+
+.timestamp {
+  color: #6c757d;
+  font-weight: 600;
+  font-size: 0.85em;
+  margin-right: 8px;
+}
+
+.toggle-link {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 4px;
+  font-size: 0.9em;
+  user-select: none;
+}
+
+.toggle-link:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.content-text {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 4px;
+  /* border-radius: 3px; */
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.formatted-updates {
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin: 8px 0;
+}
+
+.json-content {
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin: 8px 0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.85em;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.toggle-btn,
+.copy-btn {
+  margin: 4px 8px 4px 0;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  border: 1px solid #dee2e6;
+  background: #f8f9fa;
+  color: #495057;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.toggle-btn:hover,
+.copy-btn:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.copy-btn:active {
+  background: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.toggle-view-btn {
+  padding: 4px 8px;
+  font-size: 0.8em;
+  border: 1px solid #007bff;
+  background: #007bff;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-view-btn:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+}
+
+.token-info {
+  color: #6c757d;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+/* 로딩 애니메이션 */
+.loading-ring {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.loading-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  animation: loading-ring-rotate 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #007bff transparent transparent transparent;
+}
+
+.loading-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.loading-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loading-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loading-ring-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .status-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 12px;
+  }
+
+  .stream-update {
+    padding: 6px 10px;
+    font-size: 0.85em;
+  }
+
+  .content-text {
+    font-size: 0.8em;
+  }
+}
+
+/* 다크모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .streaming-display {
+    background: #1e1e1e;
+    border-color: #404040;
+    color: #e0e0e0;
+  }
+
+  .status-bar {
+    background: #2d2d2d;
+    border-color: #404040;
+  }
+
+  .content-area {
+    background: #1e1e1e;
+  }
+
+  .raw-view {
+    background: #252525;
+  }
+
+  .raw-content {
+    color: #e0e0e0;
+  }
+
+  .timestamp {
+    color: #a0a0a0;
+  }
+
+  .token-info {
+    color: #a0a0a0;
+  }
+
+  .toggle-link {
+    color: #58a6ff;
+  }
+
+  .toggle-link:hover {
+    color: #79c0ff;
+  }
+
+  .content-text {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+  }
+
+  .formatted-updates {
+    color: #e0e0e0;
+  }
+
+  .json-content {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+  }
+
+  .toggle-btn,
+  .copy-btn {
+    background: #404040;
+    border-color: #606060;
+    color: #e0e0e0;
+  }
+
+  .toggle-btn:hover,
+  .copy-btn:hover {
+    background: #505050;
+    border-color: #707070;
+  }
+
+  .copy-btn:active {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+  }
+
+  /* 다크모드에서 업데이트 타입별 스타일 조정 */
+  .update-progress {
+    background: rgba(0, 123, 255, 0.1);
+    color: #58a6ff;
+  }
+
+  .update-llm-content {
+    background: rgba(0, 123, 255, 0.1);
+    color: #58a6ff;
+  }
+
+  .update-final-result {
+    background: rgba(40, 167, 69, 0.1);
+    color: #56d364;
+  }
+
+  .update-tool-calls {
+    background: rgba(23, 162, 184, 0.1);
+    color: #39c5cf;
+  }
+
+  .update-updates {
+    background: rgba(253, 126, 20, 0.1);
+    color: #ff8c00;
+  }
+
+  .update-error {
+    background: rgba(220, 53, 69, 0.1);
+    color: #f85149;
+  }
+
+  .update-complete {
+    background: rgba(40, 167, 69, 0.1);
+    color: #56d364;
+  }
+}

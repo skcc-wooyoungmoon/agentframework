@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.filebox-wrap {
+  .filebox-item {
+    > .filebox-item_left {
+      position: relative;
+      flex: 1;
+      .file-progress {
+        position: absolute;
+        top: calc(50% - 4px);
+        left: 0;
+        right: 0;
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        background-color: #cde0ff;
+        > .file-progress_gauge {
+          height: 100%;
+          width: 10%;
+          background-color: #005df9;
+          border-radius: 4px;
+          overflow: hidden;
+        }
+        &.error {
+          // background-color: #d61111;
+          .file-progress_gauge {
+            background-color: #d61111;
+          }
+        }
+      }
+    }
+    > .filebox-item_right {
+      width: auto;
+    }
+  }
+}

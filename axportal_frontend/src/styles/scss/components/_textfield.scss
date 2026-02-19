@@ -1,0 +1,357 @@
+@charset "UTF-8";
+
+// Form Group
+.form-group {
+  display: flex;
+  flex-direction: column;
+  // gap: 4px; 삭제
+  &.no-line {
+    height: 290px;
+    .textfield {
+      padding: 0 !important;
+      height: 100%;
+      border: 0;
+      textarea {
+        height: 100%;
+        resize: none;
+      }
+    }
+  }
+
+  &.error {
+    .textfield {
+      border-color: var(--color-negative-red);
+    }
+  }
+
+  &.disabled {
+    .textfield {
+      background-color: var(--color-gray-100);
+
+      input,
+      textarea {
+        color: var(--color-gray-700);
+      }
+
+      input + button {
+        pointer-events: none !important;
+        .ic-system-24-calender {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  &.readonly {
+    .textfield {
+      // background-color: var(--color-gray-100);
+      background-color: #f3f6fb;
+
+      input,
+      textarea {
+        color: var(--color-gray-700);
+      }
+    }
+  }
+}
+
+.variable-settings-card {
+  .form-group {
+    &.disabled {
+      .textfield {
+        background-color: transparent !important;
+      }
+    }
+    &.readonly {
+      .textfield {
+        background-color: transparent !important;
+      }
+    }
+  }
+}
+
+// Form Message
+.form-message {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+
+  .desc-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding-left: 12px;
+    .bullet-text {
+      position: relative;
+      padding-left: 10px;
+      font-size: 14px;
+      color: #242a34;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.08px;
+      &::before {
+        position: absolute;
+        display: block;
+        content: '';
+        top: 8px;
+        left: 0px;
+        width: 4px;
+        height: 4px;
+        border-radius: 4px;
+        background-color: #242a34;
+      }
+    }
+    .error-text {
+      padding-left: 0;
+      font-size: 14px;
+      color: var(--color-negative-red);
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.08px;
+    }
+  }
+
+  .count-text {
+    margin-left: auto;
+    padding-right: 4px;
+    font-size: 14px;
+    color: var(--color-gray-600);
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.08px;
+
+    > span {
+      font-size: 14px;
+      color: var(--color-gray-600);
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: -0.08px;
+
+      &.current {
+        color: var(--color-blue-800);
+
+        &.error {
+          color: var(--color-negative-red);
+        }
+      }
+    }
+  }
+}
+
+// Textfield
+.textfield {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 15px;
+  width: 100%;
+  height: 48px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: 8px;
+
+  > textarea {
+    scrollbar-width: thin;
+    scrollbar-color: #dce2ed transparent; /* thumb track */
+
+    &::-webkit-scrollbar {
+      width: 4px !important;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #dce2ed;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-button {
+      display: none !important;
+      height: 0 !important;
+      width: 0 !important;
+    }
+  }
+
+  &:focus-within {
+    border-color: var(--color-blue-800);
+
+    .textfield-clear {
+      display: inline-flex;
+    }
+  }
+
+  > input {
+    width: 100%;
+    flex-grow: 1;
+    font-size: 16px;
+    color: var(--color-gray-800);
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.08px;
+    border: 0;
+    outline: none;
+
+    &::placeholder {
+      // color: var(--color-gray-550);
+      font-size: 16px;
+      line-height: 20px;
+      color: #7e889b;
+    }
+  }
+
+  // 텍스트필드 내 아이콘, 텍스트 요소 공통 스타일
+  > i,
+  > span {
+    flex-shrink: 0;
+    display: inline-flex;
+    color: var(--color-gray-800);
+  }
+
+  // 텍스트필드 내 버튼 공통 스타일
+  > button {
+    flex-shrink: 0;
+    display: inline-flex;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &-clear {
+    display: none;
+  }
+
+  &.multi-line {
+    padding: 12px 15px;
+    height: auto;
+    align-items: start;
+    > textarea {
+      width: 100%;
+      min-width: 100px;
+      flex-grow: 1;
+      font-size: 16px;
+      color: var(--color-gray-800);
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: -0.08px;
+      border: 0;
+      outline: none;
+
+      scrollbar-width: thin;
+      scrollbar-color: #dce2ed transparent;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #dce2ed;
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-button {
+        display: none !important;
+        height: 0;
+        width: 0;
+      }
+
+      &::placeholder {
+        // color: var(--color-gray-550);
+        color: #7e889b;
+      }
+    }
+  }
+
+  &.single-line {
+    padding: 12px 15px;
+    align-items: start;
+    > textarea {
+      width: 100%;
+      min-width: 100px;
+      flex-grow: 1;
+      font-size: 16px;
+      color: var(--color-gray-800);
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: -0.08px;
+      border: 0;
+      outline: none;
+
+      scrollbar-width: thin;
+      scrollbar-color: #dce2ed transparent;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #dce2ed;
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-button {
+        display: none !important;
+        height: 0;
+        width: 0;
+      }
+
+      &::placeholder {
+        // color: var(--color-gray-550);
+        color: #7e889b;
+      }
+    }
+  }
+}
+
+.article-filter {
+  .form-group {
+    gap: 0 !important;
+  }
+}
+
+// textarea 전체 적용(테스트중..)
+textarea {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #dce2ed transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #dce2ed;
+    border-radius: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+    height: 0;
+    width: 0;
+  }
+  &::placeholder {
+    color: #7e889b;
+  }
+}
+
+.datepicker-wrap {
+  .form-group {
+    &.readonly {
+      .textfield {
+        background-color: #ffffff !important;
+      }
+      &.disabled {
+        .textfield {
+          background-color: #f3f6fb !important;
+        }
+      }
+    }
+  }
+}

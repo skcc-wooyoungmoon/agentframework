@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.form-field{
+    width:100%;
+    display: flex;
+    &.row{
+        flex-direction: row;
+    }
+    &.column{
+        flex-direction: column;
+    }
+    &.evenly{
+        &>div{
+            flex:1;
+        }
+    }
+}

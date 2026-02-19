@@ -1,0 +1,466 @@
+import { useGetApiKeyStatic } from '@/services/deploy/apikey/apikey.services';
+import { dateUtils } from '@/utils/common';
+import type { ApexOptions } from 'apexcharts';
+import { useMemo, useState } from 'react';
+import { UIBox, UIButton2, UITypography } from '../../UI';
+import { UIArticle, UIDropdown, UIGroup, UIInput, UIUnitGroup } from '../../UI/molecules';
+import { UIBarChart, UILineChart } from '../../UI/molecules/chart';
+
+interface SearchValues {
+  searchType: string;
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
+}
+
+/**
+ * @author SGO1032948
+ * @description API Key 모니터링
+ *
+ * DP_030103
+ */
+export const ApiKeyMonitoring = ({ apiKeyId }: { apiKeyId: string }) => {
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 조회조건 상태 관리
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 오늘 날짜
+  const today = useMemo(() => {
+    const now = Date.now();
+    const currentHour = parseInt(dateUtils.formatDate(now, 'time').slice(0, 2), 10);
+    const nextHour = (currentHour + 1) % 24;
+    const isNextDay = currentHour === 23;
+
+    return {
+      origin: now,
+      date: isNextDay
+        ? dateUtils.formatDate(dateUtils.addToDate(now, 1, 'days'), 'custom', { pattern: 'yyyy.MM.dd' })
+        : dateUtils.formatDate(now, 'custom', { pattern: 'yyyy.MM.dd' }),
+      time: nextHour.toString().padStart(2, '0'),
+      endTime: nextHour.toString().padStart(2, '0'),
+      endDate: isNextDay
+        ? dateUtils.formatDate(dateUtils.addToDate(now, 1, 'days'), 'custom', { pattern: 'yyyy.MM.dd' })
+        : dateUtils.formatDate(now, 'custom', { pattern: 'yyyy.MM.dd' }),
+    };
+  }, []);
+
+  // 조회 조건
+  const [filters, setFilters] = useState<SearchValues>({
+    searchType: '1DAY',
+    startDate: dateUtils.formatDate(dateUtils.addToDate(today.origin, -1, 'days'), 'custom', {
+      pattern: 'yyyy.MM.dd',
+    }),
+    startTime: `${today.time}시`,
+    endTime: `${today.endTime}시`,
+    endDate: today.endDate,
+  });
+
+  // 날짜 비교를 위한 헬퍼 함수 (yyyy.MM.dd 형식)
+  const compareDates = (date1: string, date2: string): number => {
+    const d1 = new Date(date1.replace(/\./g, '-'));
+    const d2 = new Date(date2.replace(/\./g, '-'));
+    return d1.getTime() - d2.getTime();
+  };
+
+  const updateFilters = (newFilters: Partial<SearchValues>) => {
+    setFilters(prev => ({ ...prev, ...newFilters }));
+  };
+
+  // 24 시간 옵션
+  const timeOptions = useMemo(
+    () =>
+      Array.from({ length: 24 }, (_, index) => ({
+        value: `${index.toString().padStart(2, '0')}시`,
+        label: `${index.toString().padStart(2, '0')}시`,
+      })),
+    []
+  );
+
+  // 조회 조건 변경 핸들러
+  const handleSearchTypeChange = (searchType: string) => {
+    if (searchType === '1DAY') {
+      updateFilters({
+        searchType,
+        startDate: dateUtils.formatDate(dateUtils.addToDate(today.origin, -1, 'days'), 'custom', {
+          pattern: 'yyyy.MM.dd',
+        }),
+        endDate: today.endDate,
+      });
+    } else if (searchType === '2DAYS') {
+      updateFilters({
+        searchType,
+        startDate: dateUtils.formatDate(dateUtils.addToDate(today.origin, -2, 'days'), 'custom', {
+          pattern: 'yyyy.MM.dd',
+        }),
+        endDate: today.endDate,
+      });
+    } else if (searchType === '3DAYS') {
+      updateFilters({
+        searchType,
+        startDate: dateUtils.formatDate(dateUtils.addToDate(today.origin, -3, 'days'), 'custom', {
+          pattern: 'yyyy.MM.dd',
+        }),
+        endDate: today.endDate,
+      });
+    } else {
+      // CUSTOM인 경우 searchType만 변경
+      updateFilters({ searchType });
+    }
+  };
+
+  //////  통계 조회
+
+  // 날짜와 시간을 조합하여 yyyyMMddHHmm 형태로 변환하는 함수
+  const formatDateTime = (date: string, time: string) => {
+    const cleanDate = date.replace(/\./g, ''); // yyyy.MM.dd -> yyyyMMdd
+    const cleanTime = time.replace('시', '').padStart(2, '0'); // HH시 -> HH
+    return `${cleanDate}${cleanTime}00`; // yyyyMMddHHmm (분은 00으로 고정)
+  };
+
+  const { data, refetch } = useGetApiKeyStatic({
+    id: apiKeyId,
+    startDate: formatDateTime(filters.startDate, filters.startTime),
+    endDate: formatDateTime(filters.endDate, filters.endTime),
+  });
+
+  const callData = useMemo(() => {
+    return {
+      totalCount: data?.reduce((acc, item) => acc + item.totalCount, 0),
+      succCount: data?.reduce((acc, item) => acc + item.succCount, 0),
+      failCount: data?.reduce((acc, item) => acc + item.failCount, 0),
+    };
+  }, [data]);
+
+  // 시간대별 데이터를 완전한 시간 범위로 채우는 함수
+  const processChartData = useMemo(() => {
+    // 실제 데이터와 매핑
+    const chartData = data ?? [];
+
+    // 카테고리 생성 (시간 표시용)
+    const categories = chartData.map(item => {
+      return `${item.hour}`;
+    });
+
+    return { chartData, categories };
+  }, [data]);
+
+  // action
+  const handleSearch = () => {
+    refetch();
+  };
+
+  // 호출 건수 차트 상태
+  const timeCallCountChartState = useMemo(
+    () => ({
+      series: [
+        {
+          name: '호출건수',
+          data:
+            processChartData.chartData?.map(item => {
+              const totalCount = item.totalCount || 0;
+              return isNaN(totalCount) ? 0 : totalCount;
+            }) || [],
+        },
+      ],
+      options: {
+        fill: {
+          type: 'gradient',
+          gradient: {
+            type: 'vertical',
+            shadeIntensity: 0,
+            gradientToColors: ['rgba(157, 193, 255, 0.35)'],
+            stops: [0, 100],
+            colorStops: [
+              {
+                offset: 0,
+                color: 'rgba(38, 112, 255, 0.6)',
+                opacity: 1,
+              },
+              {
+                offset: 100,
+                color: 'rgba(157, 193, 255, 0.35)',
+                opacity: 1,
+              },
+            ],
+          },
+        },
+        stroke: {
+          show: false,
+          curve: 'smooth',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            borderRadiusApplication: 'end',
+            columnWidth: '96%',
+          },
+        },
+        xaxis: {
+          categories: processChartData.categories || [],
+        },
+      } as ApexOptions,
+    }),
+    [processChartData]
+  );
+
+  const averageResponseTimeChartState = useMemo(
+    () => ({
+      series: [
+        {
+          name: '평균 응답시간',
+          data:
+            processChartData.chartData?.map(item => {
+              const responseTime = item.resMiliSec || 0;
+              const responseTimeInSeconds = responseTime / 1000; // 밀리초를 초로 변환
+              return isNaN(responseTimeInSeconds) ? 0 : Number(responseTimeInSeconds.toFixed(2));
+            }) || [],
+        },
+      ],
+      options: {
+        chart: {
+          width: '100%',
+        },
+        xaxis: {
+          type: 'category',
+          categories: processChartData.categories || [],
+        },
+        stroke: {
+          width: 2,
+          curve: 'smooth',
+        },
+        legend: {
+          show: false,
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            type: 'vertical',
+            shadeIntensity: 0,
+            colorStops: [
+              {
+                offset: 16.3,
+                color: 'rgba(255, 171, 8, 0.1)',
+                opacity: 1,
+              },
+              {
+                offset: 110.4,
+                color: 'rgba(255, 171, 8, 0)',
+                opacity: 1,
+              },
+            ],
+          },
+        },
+        colors: ['#FFAB08'],
+      } as ApexOptions,
+    }),
+    [processChartData]
+  );
+
+  // 호출 성공률
+  const successRateChartState = useMemo(
+    () => ({
+      series: [
+        {
+          name: '호출 성공률',
+          data:
+            processChartData.chartData?.map(item => {
+              // console.log('item', item);
+              if (item.totalCount === 0) return 0;
+              const successRate = (item.succCount / item.totalCount) * 100;
+              return isNaN(successRate) ? 0 : Number(successRate.toFixed(2));
+            }) || [],
+        },
+      ],
+      options: {
+        xaxis: {
+          type: 'category',
+          categories: processChartData.categories || [],
+        },
+        stroke: {
+          width: 2,
+          curve: 'smooth',
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            type: 'vertical',
+            shadeIntensity: 0,
+            colorStops: [
+              {
+                offset: 12.8,
+                color: 'rgba(55, 216, 208, 0.1)',
+                opacity: 1,
+              },
+              {
+                offset: 110.83,
+                color: 'rgba(55, 216, 208, 0)',
+                opacity: 1,
+              },
+            ],
+          },
+        },
+        colors: ['#37D8D0'],
+      } as ApexOptions,
+    }),
+    [processChartData]
+  );
+
+  return (
+    <>
+      {/* 검색 영역 */}
+      <UIArticle className='article-filter'>
+        <UIBox className='box-filter'>
+          <UIGroup gap={40} direction='row'>
+            <div style={{ width: 'calc(100% - 168px)' }}>
+              <table className='tbl_type_b'>
+                <tbody>
+                  <tr>
+                    <th>
+                      <UITypography variant='body-1' className='secondary-neutral-800 text-body-1-sb'>
+                        조회조건
+                      </UITypography>
+                    </th>
+                    <td colSpan={3}>
+                      <UIUnitGroup gap={32} direction='row'>
+                        {/* 조회 조건 영역 */}
+                        <div className='flex-1'>
+                          <UIDropdown
+                            value={filters.searchType}
+                            placeholder='조회 조건 선택'
+                            options={[
+                              { value: '1DAY', label: '최근 24시간' },
+                              { value: '2DAYS', label: '최근 48시간' },
+                              { value: '3DAYS', label: '최근 72시간' },
+                              { value: 'CUSTOM', label: '사용자 지정' },
+                            ]}
+                            onSelect={value => handleSearchTypeChange(value)}
+                          />
+                        </div>
+
+                        {/* 시작 시간 영역 */}
+                        <div className='flex-1'>
+                          <UIUnitGroup gap={8} direction='row' vAlign='center'>
+                            <div className='flex-1'>
+                              <UIInput.Date
+                                value={filters.startDate}
+                                disabled={filters.searchType !== 'CUSTOM'}
+                                onChange={e => {
+                                  const newStartDate = e.target.value;
+                                  // 시작일자가 종료일자보다 이후이면 종료일자를 시작일자와 동일하게 설정
+                                  if (compareDates(newStartDate, filters.endDate) > 0) {
+                                    setFilters(prev => ({ ...prev, startDate: newStartDate, endDate: newStartDate }));
+                                  } else {
+                                    setFilters(prev => ({ ...prev, startDate: newStartDate }));
+                                  }
+                                }}
+                              />
+                            </div>
+                            <div className='w-[100px]'>
+                              <UIDropdown
+                                value={filters.startTime}
+                                disabled={filters.searchType !== 'CUSTOM'}
+                                placeholder='시간'
+                                options={timeOptions}
+                                onSelect={value => updateFilters({ startTime: value })}
+                              />
+                            </div>
+
+                            <UITypography variant='body-1' className='secondary-neutral-p w-[28px] justify-center'>
+                              ~
+                            </UITypography>
+
+                            {/* 종료 시간 영역 */}
+                            <div className='flex-1'>
+                              <UIInput.Date
+                                value={filters.endDate}
+                                disabled={filters.searchType !== 'CUSTOM'}
+                                onChange={e => {
+                                  const newEndDate = e.target.value;
+                                  // 종료일자가 시작일자보다 이전이면 시작일자를 종료일자와 동일하게 설정
+                                  if (compareDates(filters.startDate, newEndDate) > 0) {
+                                    setFilters(prev => ({ ...prev, startDate: newEndDate, endDate: newEndDate }));
+                                  } else {
+                                    setFilters(prev => ({ ...prev, endDate: newEndDate }));
+                                  }
+                                }}
+                              />
+                            </div>
+
+                            <div className='w-[100px]'>
+                              <UIDropdown
+                                value={filters.endTime}
+                                disabled={filters.searchType !== 'CUSTOM'}
+                                placeholder='시간'
+                                options={timeOptions}
+                                onSelect={value => updateFilters({ endTime: value })}
+                              />
+                            </div>
+                          </UIUnitGroup>
+                        </div>
+                      </UIUnitGroup>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style={{ width: '128px' }}>
+              <UIButton2 className='btn-secondary-blue' style={{ width: '100%' }} onClick={handleSearch}>
+                조회
+              </UIButton2>
+            </div>
+          </UIGroup>
+        </UIBox>
+      </UIArticle>
+
+      {/* Chart 영역 */}
+      <UIArticle className='article-grid'>
+        <div className='article-body'>
+          {/* 데이터 카드영역 */}
+          <div className='card-default'>
+            <div className='card-list-wrapper'>
+              <div className='card-list'>
+                <UIGroup direction='column' gap={6} vAlign='center'>
+                  <UITypography variant='body-1' className='secondary-neutral-500'>
+                    전체 호출
+                  </UITypography>
+                  <UITypography variant='title-3' className='primary-800'>
+                    {callData.totalCount}
+                  </UITypography>
+                </UIGroup>
+              </div>
+              <div className='card-list'>
+                <UIGroup direction='column' gap={6} vAlign='center'>
+                  <UITypography variant='body-1' className='secondary-neutral-500'>
+                    정상
+                  </UITypography>
+                  <UITypography variant='title-3' className='secondary-neutral-700'>
+                    {callData.succCount}
+                  </UITypography>
+                </UIGroup>
+              </div>
+              <div className='card-list'>
+                <UIGroup direction='column' gap={6} vAlign='center'>
+                  <UITypography variant='body-1' className='secondary-neutral-500'>
+                    오류
+                  </UITypography>
+                  <UITypography variant='title-3' className='semantic-deep-red'>
+                    {callData.failCount}
+                  </UITypography>
+                </UIGroup>
+              </div>
+            </div>
+          </div>
+
+          {/* Chart 영역 구분 */}
+          <div className='chart-container mt-4'>
+            <UIBarChart label='시간별 호출건수' x='시간 (ms)' y='요청수(개)' options={timeCallCountChartState.options} series={timeCallCountChartState.series} height={368} />
+          </div>
+          <div className='chart-container flex mt-4'>
+            <UILineChart label='평균 응답시간' x='시간' y='초(s)' options={averageResponseTimeChartState.options} series={averageResponseTimeChartState.series} />
+            <UILineChart label='호출 성공률' x='시간' y='건수' options={successRateChartState.options} series={successRateChartState.series} />
+          </div>
+        </div>
+      </UIArticle>
+    </>
+  );
+};

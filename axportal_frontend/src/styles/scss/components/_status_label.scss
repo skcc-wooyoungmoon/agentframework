@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+.status-label {
+  display: inline-flex !important;
+  padding: 0 6px;
+  width: auto;
+  height: 24px;
+  gap: 4px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  align-items: center;
+
+  /* ====== 위험 등급별 색상 ====== */
+  &.status-neutral {
+    /* 중립 (Gray) */
+    background-color: #cecece;
+    color: #545454;
+  }
+
+  &.status-low {
+    /* 안전/낮음 (Green) */
+    background-color: #c1eae7;
+    color: #008479;
+  }
+
+  &.status-medium {
+    /* 주의/보통 (Blue) */
+    background-color: #cbdeff;
+    color: #005df9;
+  }
+
+  &.status-high {
+    /* 경고/높음 (Orange) */
+    background-color: #ffeab5;
+    color: #f13800;
+  }
+
+  &.status-high2 {
+    /* 경고/높음 (Orange) */
+    background-color: #ffeab5;
+    color: #f13800;
+  }
+
+  &.status-critical {
+    /* 위험/심각 (Red) */
+    background-color: #ffc3c3;
+    color: #d61111;
+  }
+
+  &.status-special {
+    /* 특수/기타 (Purple) */
+    background-color: #edddff;
+    color: #7c0bff;
+  }
+
+  &.status-warning {
+    /* 위험/심각 (Red) */
+    background-color: #ffc3c3;
+    color: #e21717;
+  }
+}

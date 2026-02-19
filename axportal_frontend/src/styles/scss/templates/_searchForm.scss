@@ -1,0 +1,338 @@
+@charset "UTF-8";
+
+// guide-area
+.guide {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 50px 30px;
+  &-section {
+    h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// ############################################################################
+
+// Search Component
+.search {
+  width: 1752px;
+  background: #ffffff;
+  border: 1px solid #e7edf6;
+  border-radius: 16px;
+  padding: 32px 48px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 0 8px 0 rgba(22, 37, 66, 0.06);
+
+  .search-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 48px;
+
+    // 첫 번째 행 - 조회기간 + 버튼
+    &:first-child {
+      .search-button {
+        width: 128px;
+        height: 48px;
+        background: #005df9;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #ffffff;
+        cursor: pointer;
+        margin-left: auto;
+
+        &:hover {
+          background: #0047cc;
+        }
+
+        &:active {
+          background: #003399;
+        }
+      }
+    }
+
+    .field-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .field-label {
+        width: 72px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .label-text {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 24px;
+          letter-spacing: -0.08px;
+          color: #242a34;
+        }
+
+        .required-dot {
+          width: 4px;
+          height: 4px;
+          background: #ee473d;
+          border-radius: 50%;
+          margin-left: 2px;
+        }
+      }
+
+      .dropdown {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 640px;
+        height: 48px;
+        background: #ffffff;
+        border: 1px solid #dce2ed;
+        border-radius: 8px;
+        padding: 0 16px;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        .dropdown-text {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          letter-spacing: -0.08px;
+          color: #242a34;
+        }
+
+        .dropdown-icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+
+    .date-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .date-field {
+        width: 348px;
+      }
+
+      .date-separator {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.08px;
+        color: #576072;
+        margin: 0 4px;
+      }
+    }
+
+    .search-input-wrapper {
+      flex: 1;
+
+      .search-field {
+        width: 728px;
+      }
+    }
+
+    .textfield {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      background: #ffffff;
+      border: 1px solid #dce2ed;
+      padding: 0 16px;
+      box-sizing: border-box;
+      gap: 8px;
+
+      &.date-field {
+        border-radius: 12px;
+      }
+
+      &.search-field {
+        border-radius: 8px;
+      }
+
+      input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.08px;
+        color: #242a34;
+        background: transparent;
+
+        &::placeholder {
+          color: #7e889b;
+        }
+      }
+
+      .textfield-clear,
+      .textfield-date {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        i {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .ic-system-24-outline-search {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+// tag
+.tag-form {
+  margin-top: 20px;
+
+  .tag-field {
+    display: flex;
+    align-items: center;
+    width: 1264px;
+    height: 48px;
+    border-radius: 12px;
+
+    .tag-area {
+      display: flex;
+      align-items: center;
+      width: 1192px;
+      height: 48px;
+      background: #ffffff;
+      border: 1px solid #dce2ed;
+      border-radius: 8px;
+      padding: 12px 16px;
+      box-sizing: border-box;
+
+      .tag-list {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        .tag-item {
+          display: flex;
+          align-items: center;
+          height: 24px;
+          background: #f3f6fb;
+          border: 1px solid #dce2ed;
+          border-radius: 4px;
+          padding: 0 6px;
+          gap: 4px;
+
+          .tag-text {
+            font-family: 'Pretendard';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: -0.08px;
+            color: #576072;
+          }
+
+          .tag-remove {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 12px;
+            height: 12px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+
+            .ic-system-12 {
+              width: 8px;
+              height: 8px;
+            }
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+    }
+
+    .tag-add-button {
+      width: 64px;
+      height: 48px;
+      background: #ffffff;
+      border: 1px solid #dce2ed;
+      border-radius: 8px;
+      font-family: 'Pretendard';
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.08px;
+      color: #242a34;
+      cursor: pointer;
+      margin-left: 8px;
+
+      &:hover {
+        background: #f8f9fa;
+      }
+
+      &:active {
+        background: #f1f3f4;
+      }
+    }
+  }
+}
+
+/* Dropdown Scrollbar */
+.dropdown-scrollbar {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #dce2ed transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #dce2ed;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #c7cedc;
+    }
+  }
+}
+
+/* 공통 라벨 스타일 */
+.form-label {
+  font-family: 'pretendard';
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.08px;
+  color: #242a34;
+}

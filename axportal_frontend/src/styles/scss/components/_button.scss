@@ -1,0 +1,631 @@
+@charset "UTF-8";
+:root {
+  /* 색상 */
+  --white: #fff;
+  --blue-200: #e5eeff;
+  --blue-300: #cde0ff;
+  --blue-700: #2670ff;
+  --blue-800: #005df9;
+  --blue-900: #0047e7;
+  --gray-50: #f8f9fc;
+  --gray-100: #f3f6fb;
+  --gray-200: #e7edf6;
+  --gray-300: #dce2ed;
+  --gray-400: #c7cedc;
+  --gray-500: #8b95a9;
+  --gray-550: #7e889b;
+  --gray-600: #576072;
+  --gray-700: #373e4d;
+  --gray-800: #242a34;
+  --gray-900: #121315;
+  --red-600: #e5484d;
+  --green-600: #0f9d58;
+}
+/* ======================================================
+  공통 Button
+====================================================== */
+[class^='btn'] {
+  flex-shrink: 0;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+/* type(size) */
+[class^='btn-primary'] {
+  min-width: 200px;
+  height: 56px;
+  padding: 0 var(--pad-md);
+  border-radius: var(--radius-8);
+  border-radius: 8px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: var(--font-weight-semibold);
+}
+[class^='btn-modal'] {
+  min-width: 164px;
+  height: 48px;
+  padding: 0 var(--pad-md);
+  border-radius: var(--radius-8);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+}
+[class^='btn-secondary'] {
+  min-width: 80px;
+  height: 48px;
+  padding: 0 var(--pad-sm);
+  border-radius: var(--radius-8);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+}
+[class^='btn-tertiary'] {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: var(--radius-8);
+  border-radius: 8px;
+  min-width: 60px;
+  height: 40px;
+  padding: 0 var(--pad-sm);
+}
+
+[class^='btn-aside'] {
+  min-width: 80px;
+  height: 40px;
+  padding: 0 var(--pad-sm);
+  border-radius: var(--radius-8);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--font-weight-regular);
+}
+
+/* ======================================================
+  Color variation
+====================================================== */
+[class^='btn'][class*='-blue'] {
+  background-color: var(--blue-800);
+  color: var(--white);
+  &:hover,
+  &:active {
+    background-color: var(--blue-900);
+  }
+  &[disabled] {
+    background-color: var(--gray-200);
+    color: var(--gray-500);
+  }
+}
+[class^='btn'][class*='-sky-blue'] {
+  background-color: var(--blue-200);
+  color: var(--blue-800);
+  &:hover,
+  &:active {
+    background-color: var(--blue-300);
+  }
+  &[disabled] {
+    background-color: var(--gray-200);
+    color: var(--gray-500);
+  }
+}
+[class^='btn'][class*='-gray'] {
+  // background-color: var(--gray-200);
+  background-color: #e7edf6;
+  // color: var(--gray-700);
+  color: var(--gray-800);
+  &:hover,
+  &:active {
+    background-color: var(--gray-300);
+  }
+  &[disabled] {
+    background-color: var(--gray-200);
+    color: var(--gray-500);
+  }
+}
+[class^='btn'][class*='-subgray'] {
+  background-color: #f3f6fb;
+  color: var(--gray-600);
+}
+[class^='btn'][class*='-outline'] {
+  background-color: var(--white);
+  border: 1px solid var(--gray-300);
+  color: var(--gray-700);
+  // 호버 효과 제거
+  &:hover,
+  &:active {
+    border-color: var(--blue-800);
+    color: var(--blue-800);
+  }
+  &[disabled] {
+    background-color: var(--gray-100);
+    color: var(--gray-500);
+    border-color: var(--gray-300);
+  }
+}
+[class^='btn'][class*='-outline-blue'] {
+  border: 1px solid var(--blue-800);
+  color: var(--blue-800);
+  &:hover,
+  &:active {
+    background-color: var(--white);
+    border-color: var(--blue-800);
+    color: var(--blue-800);
+  }
+}
+
+/* ======================================================
+  Text Button
+====================================================== */
+[class^='btn-text'] {
+  font-weight: var(--font-weight-regular);
+  color: var(--gray-800);
+}
+
+/* underline */
+[class^='btn-text'][class*='-underline'] {
+  --gap: 4px;
+  --underline-color: var(--gray-800);
+  --cut: 0px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap);
+
+  background-image: linear-gradient(var(--underline-color), var(--underline-color));
+  background-repeat: no-repeat;
+  background-size: calc(100% - var(--cut)) 1px;
+  background-position: 0 100%;
+
+  &[disabled] {
+    color: var(--gray-400);
+    border-color: var(--gray-400);
+    --underline-color: var(--gray-400);
+  }
+}
+[class^='btn-text'][class*='-underline']:has(i),
+[class^='btn-text'][class*='-underline']:has(svg) {
+  --cut: 1em;
+}
+[class^='btn-text'][class*='-underline']:has([class*='-12']) {
+  --cut: calc(12px + var(--gap));
+}
+[class^='btn-text'][class*='-underline']:has([class*='-16']) {
+  --cut: calc(16px + var(--gap));
+}
+[class^='btn-text'][class*='-underline']:has([class*='-20']) {
+  --cut: calc(20px + var(--gap));
+}
+[class^='btn-text'][class*='-underline']:has([class*='-24']) {
+  --cut: calc(24px + var(--gap));
+}
+
+[class^='btn-text'][class*='-underline-point'] {
+  --underline-color: var(--blue-800);
+}
+
+// - 하이픈 class 중첩 사용되므로 _ 언더바로 링크 + 아이콘 gap class 추가
+[class^='btn-text'][class*='imp-underline_12'] {
+  --cut: calc(12px + var(--gap)) !important;
+}
+[class^='btn-text'][class*='imp-underline_16'] {
+  --cut: calc(16px + var(--gap)) !important;
+}
+[class^='btn-text'][class*='imp-underline_20'] {
+  --cut: calc(20px + var(--gap)) !important;
+}
+[class^='btn-text'][class*='imp-underline_24'] {
+  --cut: calc(24px + var(--gap)) !important;
+}
+
+/* font-size */
+[class^='btn-text'][class*='-14'] {
+  font-size: 14px;
+  line-height: 20px;
+}
+[class^='btn-text'][class*='-16'] {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* color */
+[class^='btn-text'][class*='-point'] {
+  color: var(--blue-800);
+}
+[class^='btn-text'][class*='-gray'] {
+  color: var(--gray-500);
+  background-color: transparent;
+  &:hover,
+  &:active {
+    background-color: transparent;
+  }
+}
+
+/* weight */
+[class^='btn-text'][class*='-semibold'] {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* weight */
+[class^='btn'][class*='-semibold'] {
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ======================================================
+  Option Button
+====================================================== */
+[class^='btn-option'] {
+  height: 32px;
+  padding: 6px 8px;
+  border-radius: var(--radius-6);
+  font-size: 14px;
+  line-height: 20px;
+}
+[class^='btn-option'][class*='-outlined'] {
+  color: var(--gray-800);
+  &[disabled] {
+    background-color: var(--gray-100);
+    color: var(--gray-500);
+    border-color: var(--gray-100);
+    cursor: default !important;
+  }
+}
+
+[class^='btn-option'][class*='-outlined-sky-blue'] {
+  background-color: var(--blue-200);
+  border-color: var(--blue-200);
+  color: var(--blue-800);
+  &:hover,
+  &:active {
+    background-color: var(--blue-300);
+    border-color: var(--blue-300);
+  }
+  &[disabled] {
+    background-color: var(--gray-200);
+    color: var(--gray-500);
+  }
+}
+
+[class^='btn-option'][class*='-filled'] {
+  padding: 6px 13.5px;
+  background-color: var(--blue-800);
+  color: var(--white);
+}
+[class^='btn-option'][class*='-bgfull'] {
+  color: var(--blue-800);
+  background-color: var(--blue-200);
+}
+
+/* ======================================================
+  Compact Button
+====================================================== */
+[class^='btn-compact'] {
+  height: 24px;
+  padding: 2px 6px;
+  border-radius: var(--radius-4);
+  font-size: 12px;
+  line-height: 20px;
+}
+[class^='btn-compact'][class*='-outlined'] {
+  color: var(--gray-900);
+  border: 1px solid var(--gray-300);
+  background-color: var(--gray-100);
+  &[disabled] {
+    background-color: var(--gray-300);
+    color: var(--gray-500);
+    border-color: var(--gray-300);
+  }
+}
+[class^='btn-compact'][class*='-filled'] {
+  padding: 6px 13.5px;
+  background-color: var(--blue-800);
+  color: var(--white);
+}
+[class^='btn-compact'][class*='-bgfull'] {
+  color: var(--blue-800);
+  background-color: var(--blue-200);
+}
+
+/* ======================================================
+  Plus/Minus Button
+====================================================== */
+[class^='btn'][class*='-plus'] {
+  background: url(/public/assets/images/system/ico-system-24-outline-add.svg) center / 24px no-repeat;
+  border: 1px solid transparent;
+  border-color: var(--gray-300);
+  &:hover,
+  &:active {
+    background: url(/public/assets/images/system/ico-system-24-outline-blue-add.svg) center / 24px no-repeat;
+    border-color: var(--blue-800);
+  }
+  &[disabled] {
+    background: url(/public/assets/images/system/ico-system-24-outline-gray-add.svg) center / 24px no-repeat;
+    background-color: var(--gray-100);
+    border-color: var(--gray-300);
+  }
+}
+[class^='btn'][class*='-minus'] {
+  background: url(/public/assets/images/system/ico-system-24-outline-minus.svg) center / 24px no-repeat;
+  border: 1px solid transparent;
+  border-color: var(--gray-300);
+  &:hover,
+  &:active {
+    background: url(/public/assets/images/system/ico-system-24-outline-blue-minus.svg) center / 24px no-repeat;
+    border-color: var(--blue-800);
+  }
+  &[disabled] {
+    background: url(/public/assets/images/system/ico-system-24-outline-gray-minus.svg) center / 24px no-repeat;
+    background-color: var(--gray-100);
+    border-color: var(--gray-300);
+  }
+}
+
+.button-plus-blue {
+  width: 48px;
+  height: 48px;
+  padding: 0 var(--pad-sm);
+  border-radius: var(--radius-8);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+  background: url(/public/assets/images/system/ico-system-24-outline-blue-add.svg) center/24px no-repeat;
+  border-color: var(--blue-800);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.button-line-blue {
+  height: 48px;
+  padding: 0 var(--pad-sm);
+  border-radius: var(--radius-8);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+  border-color: var(--blue-800);
+  color: var(--blue-800);
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.btn {
+  &-primary {
+    &-plus,
+    &-minus {
+      min-width: 56px;
+    }
+  }
+  &-secondary {
+    &-plus,
+    &-minus {
+      min-width: 48px;
+    }
+  }
+
+  // plus 버튼 only-blue 상태
+  &-add-only {
+    min-width: 48px;
+    height: 48px;
+    color: var(--blue-800);
+    font-weight: var(--font-weight-regular);
+    border-radius: 8px;
+    border: 1px solid var(--blue-800);
+    background: url(/public/assets/images/system/ico-system-24-outline-blue-add.svg) center / 24px 24px no-repeat;
+  }
+
+  /* Chips Button */
+  &-chip {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 7px;
+    border-radius: var(--radius-6);
+    border: 1px solid var(--gray-400);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--gray-500);
+  }
+  &-builder {
+    min-width: 175px;
+    height: 40px;
+    justify-content: flex-start;
+    padding: 10px 12px;
+    gap: var(--gap-sm);
+    border-radius: var(--radius-6);
+    font-weight: var(--font-weight-regular);
+    color: var(--gray-600);
+    box-shadow: 0px 0px 8px 0px #1625420f;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: url(/public/assets/images/system/ico-system-20-builder.svg) center / contain no-repeat;
+    }
+    &[disabled] {
+      background-color: var(--gray-100);
+      color: var(--gray-500);
+      &::before {
+        background: url(/public/assets/images/system/ico-system-20-builder-disabled.svg) center / contain no-repeat;
+      }
+    }
+  }
+  &-ic {
+    flex-shrink: 0;
+    display: inline-flex;
+    cursor: pointer;
+  }
+}
+
+/* ======================================================
+  icon download Button
+====================================================== */
+
+[class^='btn'][class*='download'] {
+  border-color: var(--blue-800);
+  color: var(--blue-800);
+  font-weight: var(--font-weight-regular);
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(/public/assets/images/system/ico-system-20-download-blue.svg) center / contain no-repeat;
+  }
+  &[disabled] {
+    &::before {
+      background: url(/public/assets/images/system/ico-system-20-download-gray.svg) center / contain no-repeat;
+    }
+  }
+}
+
+// 버튼 블루 border-line
+[class^='btn'][class*='line-only-blue'] {
+  border-color: var(--blue-800);
+  color: var(--blue-800);
+  font-weight: var(--font-weight-regular);
+  &[disabled] {
+    &::before {
+      background: url(/public/assets/images/system/ico-system-20-download-gray.svg) center / contain no-repeat;
+    }
+  }
+  &:hover,
+  &:active {
+    background-color: transparent !important;
+  }
+}
+
+// icon button
+[class^='btn'][class*='icon-24'] {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  &:hover,
+  &:active {
+    background-color: transparent;
+  }
+}
+
+[class*='ic-gnb-32'] {
+  cursor: pointer;
+}
+// 결재자
+[class^='btn'][class*='system-user'] {
+  border-color: var(--blue-800);
+  color: var(--blue-800);
+  font-weight: var(--font-weight-regular);
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(/public/assets/images/system/ic-system-20-user.svg) center / contain no-repeat;
+  }
+}
+
+// Search 영역 - 조회(버튼)
+.btn-search-blue {
+  height: 48px;
+  min-width: 128px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 48px;
+  color: #fff;
+  line-height: 24px;
+  border-radius: 8px;
+  background-color: var(--blue-800);
+}
+
+// Box Toggle
+.toggle-wrapper {
+  display: flex;
+  background-color: #f3f6fb;
+  border-radius: 8px;
+  gap: 0 4px;
+  padding: 4px;
+  height: 48px;
+  position: relative;
+  .toggle-button {
+    padding: 8px 20px;
+    text-align: center;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #576072;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+
+    &.active {
+      height: 40px;
+      border-radius: 6px;
+      color: #005df9;
+      background-color: #ffffff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Custom Button Styles for Model Detail */
+.btn-model-detail {
+  background-color: var(--color-white);
+  color: var(--color-blue-800);
+  border: 1px solid var(--color-blue-800);
+  border-radius: 8px;
+  padding: 10px 12px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.btn-model-detail:hover:not(:disabled) {
+  background-color: var(--color-blue-100);
+}
+
+.btn-model-detail:disabled {
+  color: var(--color-gray-400);
+  border-color: var(--color-gray-300);
+}
+
+/* Disable Hover Effect - 호버 시 모든 스타일 변화 방지 */
+.btn-option-outlined.disable-hover:hover {
+  background-color: transparent !important;
+  border: 1px solid #dce2ed !important;
+  color: #373e4d !important;
+  opacity: 1 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.modal-buttons {
+  position: sticky;
+  bottom: -17px;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(to top, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 100%);
+  transform: translateY(22px);
+  z-index: 1;
+}

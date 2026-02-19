@@ -1,0 +1,393 @@
+/* Custom Grid Styles - AG Grid 기본 스타일 오버라이드 */
+.custom-grid,
+.ag-theme-quartz,
+.ag-root-wrapper,
+div[class*='ag-theme'],
+div[class*='ag-root'] {
+  --ag-header-height: 40px !important;
+  --ag-row-height: 48px !important;
+  --ag-list-item-height: 48px !important;
+  --ag-border-color: transparent !important;
+  --ag-header-background-color: #ffffff !important;
+  --ag-header-foreground-color: var(--color-gray-800) !important;
+  --ag-background-color: var(--color-white) !important;
+  --ag-odd-row-background-color: var(--color-gray-100) !important;
+  --ag-row-hover-color: var(--color-blue-100) !important;
+  --ag-font-family: var(--font-family-sans) !important;
+  --ag-font-size: 14px !important;
+  width: 100% !important;
+}
+
+.custom-grid .ag-root-wrapper {
+  border: none !important;
+}
+
+.custom-grid .ag-header,
+.ag-theme-quartz .ag-header,
+.ag-root-wrapper .ag-header,
+div[class*='ag-theme'] .ag-header,
+div[class*='ag-root'] .ag-header {
+  border-bottom: 1px solid #689eff !important;
+  background-color: #ffffff !important;
+  height: 40px !important;
+  min-height: 40px !important;
+}
+
+.custom-grid.empty-state .ag-pinned-left-header .ag-header-row,
+.custom-grid.empty-state .ag-pinned-right-header .ag-header-row,
+.custom-grid.empty-state .ag-header.ag-header-allow-overflow {
+  border-bottom: 1px solid #689eff !important;
+}
+
+/* AG Grid 페이지네이션 패널 완전 제거 */
+.custom-grid .ag-paging-panel {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.custom-grid .ag-pagination {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.custom-grid .ag-header-cell {
+  border: none;
+  padding: 8px 12px 8px 16px;
+  background-color: #ffffff;
+}
+
+/* 헤더 셀 호버 시 보더 제거 */
+.custom-grid .ag-header-cell:hover::after,
+.custom-grid .ag-header-cell-column-hover::after,
+.custom-grid .ag-header-cell:hover,
+.custom-grid .ag-header-cell-column-hover {
+  border-bottom: none !important;
+}
+
+.custom-grid {
+  .ag-header-cell::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    height: 0 !important;
+  }
+
+  .ag-header-cell-text {
+    font-family: 'pretendard', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.08px;
+    color: #121315;
+  }
+
+  .ag-cell {
+    border: none;
+    padding: 8px 16px;
+    font-family: 'pretendard', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.08px;
+    color: #576072;
+    display: flex;
+    align-items: center;
+  }
+
+  .ag-row {
+    border: none;
+
+    &.ag-row-even {
+      background-color: #f3f6fb;
+    }
+
+    &.ag-row-odd {
+      background-color: var(--color-white);
+    }
+
+    &:hover {
+      background-color: var(--color-blue-100) !important;
+    }
+
+    /* Disabled 행 스타일 (_grid.scss 참고) */
+    &.ag-row-disabled {
+      background-color: #f3f6fb !important;
+      opacity: 0.6;
+
+      &:hover {
+        background-color: #f3f6fb !important;
+      }
+
+      .ag-cell {
+        color: #b3bcc8;
+      }
+
+      /* 체크박스 disabled 상태 스타일 */
+      .ag-checkbox-input-wrapper {
+        &::before {
+          background-image: url(/public/assets/images/system/ico-system-24-box-disabled.svg) !important;
+        }
+
+        /* 체크박스 checked + disabled 상태 스타일 */
+        &.ag-checked {
+          cursor: default !important;
+
+          &::before {
+            background-image: url(/public/assets/images/system/ico-system-24-box-disabled-selected.svg) !important;
+          }
+        }
+      }
+    }
+  }
+
+  /* DataGroup 스토리북 Default와 동일한 스타일 적용 */
+  .ag-header-cell-comp-wrapper {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .ag-cell-wrapper {
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* autoHeight 셀의 경우 height 고정 해제 */
+  .auto-height-cell .ag-cell-wrapper {
+    height: auto !important;
+    align-items: flex-start !important;
+    /* display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical; */
+  }
+
+  /* ag-header 인라인 스타일 강제 오버라이드 */
+  .ag-header[style*='height'] {
+    height: 40px !important;
+    min-height: 40px !important;
+  }
+
+  /* 체크박스 셀 특별 처리 */
+  .ag-cell[col-id='checkbox'] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+}
+
+/* AG Grid 행 높이는 CSS 변수로 제어 - 인라인 스타일 오버라이드 제거 */
+
+/* AG Grid 정렬 아이콘 커스터마이징 */
+.custom-grid {
+  .ag-sort-indicator-icon {
+    display: none;
+  }
+
+  .ag-header-cell-sortable .ag-header-cell-text::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    background-image: url('/public/assets/images/system/ico-system-16-grid-sort.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    vertical-align: middle;
+  }
+
+  .ag-header-cell-sorted-asc .ag-header-cell-text::after {
+    transform: rotate(180deg);
+  }
+
+  .ag-header-cell-sorted-desc .ag-header-cell-text::after {
+    transform: rotate(0deg);
+  }
+
+  /* AG Grid sticky bottom 간격 제거 */
+  .ag-sticky-bottom {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0 !important;
+
+    &.ag-invisible {
+      display: none !important;
+    }
+  }
+
+  .ag-center-cols-container .ag-row {
+    cursor: pointer;
+
+    &:last-child {
+      border-bottom: 1px solid #e7edf6;
+    }
+  }
+}
+
+/* AG Grid Checkbox Header Center Alignment */
+.checkbox-header .ag-header-cell-comp-wrapper {
+  justify-content: center !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* AG Grid Text Center Header Alignment */
+.text-center .ag-header-cell-label {
+  justify-content: center !important;
+  display: flex !important;
+}
+
+/* grid toggle - disabled */
+.tg-disabled {
+  .rounded-sm {
+    background-color: #f3f6fb !important;
+  }
+
+  .ic-system-24-toggle-area-list-on {
+    background-image: url(/public/assets/images/system/ico-system-24-toggle-area-list.svg) !important;
+  }
+}
+
+/* Data Group Total Count Custom Style */
+.data-total-count {
+  font-family: 'pretendard';
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.08px;
+}
+
+.data-total-count-number {
+  color: #005df9;
+  font-weight: 600;
+}
+
+/* Typography Required - after 필수 표시 */
+.ui-typography-required::after {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background-color: #d61111;
+  border-radius: 50%;
+  margin-left: 4px;
+  transform: translateY(-150%);
+  vertical-align: baseline;
+}
+
+.ag-tooltip-custom {
+  border: 1px solid #c7cedc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.ag-tooltip-custom > .rounded-lg {
+  padding: 0 !important;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  border: 0 !important;
+  border-radius: none;
+}
+
+/* Table View Styles */
+.table-view .ag-theme-alpine {
+  --ag-border-color: #dce2ed;
+  --ag-header-background-color: #f3f6fb;
+  --ag-header-foreground-color: #242a34;
+  --ag-row-background-color: #ffffff;
+  --ag-odd-row-background-color: #ffffff;
+  --ag-row-border-color: #e7edf6;
+}
+
+.table-view .ag-header {
+  border-bottom: 1px solid #dce2ed;
+}
+
+.table-view .ag-header-cell {
+  border-right: none;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+.custom-grid.empty-data .ag-header-cell {
+  cursor: not-allowed !important;
+}
+.custom-grid.empty-data .ag-header-cell .ag-checkbox-input-wrapper input[type='checkbox'],
+.custom-grid.empty-data .ag-header-cell * {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+.table-view .ag-row {
+  border-bottom: 1px solid #e7edf6;
+}
+
+.table-view .ag-cell {
+  border-right: none;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.table-view .ag-root-wrapper {
+  border: 1px solid #dce2ed;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* AG Grid Default Styles */
+.ag-theme-alpine {
+  --ag-row-height: 48px;
+  --ag-header-height: 48px;
+}
+
+/* No Border Grid Style */
+.no-border-grid .ag-root-wrapper {
+  border: none !important;
+}
+
+.no-border-grid .ag-root {
+  border: none !important;
+}
+
+.no-border-grid {
+  --ag-borders: none;
+  --ag-border-color: transparent;
+}
+
+/* ContentEditable Placeholder Styles */
+.contenteditable-placeholder {
+  min-height: 1.5rem;
+}
+
+.contenteditable-placeholder[data-placeholder]:empty:not(:focus)::before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+/* ContentEditable Focus Styles */
+.contenteditable-placeholder:focus {
+  min-width: 2px;
+  caret-color: #374151;
+  outline: none;
+}
+
+/* Zero-width space for cursor */
+.contenteditable-placeholder:focus:empty::after {
+  content: '\200B'; /* Zero-width space */
+}

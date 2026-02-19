@@ -1,0 +1,115 @@
+/* editor container */
+.cm-editor {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  height: auto !important;
+  min-height: inherit;
+  max-height: inherit;
+  position: relative;
+}
+
+.cm-scroller {
+  padding: 10px 10px 10px 0 !important;
+  overflow-y: auto;
+  min-height: inherit;
+  max-height: inherit;
+}
+
+/* line numbering */
+.cm-gutters {
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  position: sticky;
+  left: 0;
+  height: 100% !important;
+  z-index: 1;
+}
+
+/* code font */
+.cm-content {
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  min-height: inherit;
+  height: 100% !important;
+}
+
+.cm-lineNumbers {
+  position: relative;
+  padding-left: 8px;
+  height: 100% !important;
+}
+
+/* word wrap styles - 줄바꿈 활성화 */
+.cm-wordwrap.cm-editor {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.cm-wordwrap .cm-scroller {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 10px 0 10px 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.cm-wordwrap .cm-content {
+  width: calc(100% - 40px) !important;
+  /* max-width: 100% !important; */
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+.cm-wordwrap .cm-line {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  display: block !important;
+  width: calc(100% - 40px) !important;
+  /* max-width: 100% !important; */
+  box-sizing: border-box !important;
+}
+
+.cm-wordwrap .cm-gutters {
+  flex-shrink: 0;
+}
+
+/* word wrap styles - 줄바꿈 비활성화 (기본값) */
+.cm-no-wrap.cm-editor {
+  overflow-x: auto !important;
+  width: 100%;
+}
+
+.cm-no-wrap .cm-scroller {
+  overflow-x: auto !important;
+  overflow-y: auto;
+}
+
+.cm-no-wrap .cm-content {
+  white-space: pre !important;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.cm-no-wrap .cm-line {
+  white-space: pre !important;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* responsive styles */
+@media screen and (max-width: 768px) {
+  .cm-content {
+    font-size: 13px;
+  }
+
+  .cm-scroller {
+    padding: 8px;
+  }
+}

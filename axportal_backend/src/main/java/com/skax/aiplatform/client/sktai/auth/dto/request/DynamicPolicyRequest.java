@@ -1,0 +1,27 @@
+package com.skax.aiplatform.client.sktai.auth.dto.request;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * 동적 정책 요청 DTO
+ * 
+ * @author ByounggwanLee
+ * @since 2025-08-22
+ * @version 1.0
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Schema(description = "동적 정책 요청")
+public class DynamicPolicyRequest {
+    
+    @JsonProperty("policies")
+    @Schema(description = "동적 정책 목록")
+    private Object policies;
+}

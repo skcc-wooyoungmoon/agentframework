@@ -1,0 +1,155 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# AXPORTAL BACKEND 프로젝트 구조 및 네이밍 컨벤션
+
+## 1. 전체 프로젝트 개요
+
+AXPORTAL BACKEND는 **AXPortal을 구성하는 Spring Boot 백엔드 시스템**입니다.
+
+### 핵심 특징
+- **Spring Boot 3.4.4 + Java 17** 기반
+- **Clean Architecture + DDD + Microservice-Ready** 패턴
+
+## 2. 프로젝트 구조
+
+### 2.1 전체 디렉토리 구조
+```
+axportal_backend/
+├── src/main/java/com/skax/aiplatform/
+│   ├── AxportalBackendApplication.java          # 메인 애플리케이션
+│   ├── client/                                  # 외부 API 클라이언트
+│   │   └── sktai/                              # SKT AI 플랫폼 클라이언트
+│   ├── config/                                 # 설정 클래스
+│   ├── constant/                               # 상수 정의
+│   ├── controller/                             # REST 컨트롤러
+│   │   └── 업무레벨1
+│   ├── dto/                                    # 데이터 전송 객체
+│   │   └── 업무레벨1
+│   │       └── 업무레벨2
+│   │       └── 업무레벨2
+│   ├── entity/                                 # JPA 엔티티
+│   │   └── 업무레벨1
+│   │       └── 업무레벨2
+│   │       └── 업무레벨2
+│   ├── exception/                              # 예외 처리
+│   ├── repository/                             # 데이터 액세스
+│   │   └── 업무레벨1
+│   │       └── 업무레벨2
+│   ├── service/                                # 비즈니스 로직
+│   │   └── 업무레벨1
+│   │       └── 업무레벨2
+│   └── util/                                   # 유틸리티
+├── src/main/resources/                         # 설정 파일
+├── src/test/                                   # 테스트 코드
+├── k8s/                                        # 쿠버네티스 배포 파일
+├── gradle/                                     # Gradle 래퍼
+├── build.gradle                                # 빌드 설정
+└── README.md                                   # 프로젝트 문서
+```
+
+## 3. 네이밍 컨벤션
+
+### 3.1 기본 명명 규칙
+- **영문 문자, 3~6자 이내**의 단어 조합
+- **7자 이상 영단어는 약어(3~5자)로 작성**
+- **Entity명은 테이블명이 되는 단위로 복합명사로 생성가능**
+- **역할에 따른 prefix get, create, update, delete 등 사용, postfix Controller, Repository 등** 사용 가능
+- **Java 클래스는 PascalCase** (예: DataSetController)
+- **메서드와 변수는 camelCase** (예: getDatasets, datasetList)
+
+### 3.2 계층별 명명 규칙
+
+#### Controller 계층
+- **명명 패턴**: `[Entity]Controller`, `[복합명사]controller`
+- **역할**: 클라이언트(프론트엔드, 외부 시스템)로부터 HTTP 요청을 받아, 요청을 검증하고, 비즈니스 로직 처리는 Service 계층에 위임하며, 응답을 반환한다. 프레젠테이션 계층으로서 API 엔드포인트를 제공한다.
+- **예시**: `DataSetController`, `AuthController`
+- **메소드 명명 패턴**:
+    - **GET**: `get[Entity][By조건]or[List]` (예: `getDataSetById`, `getUserList`)
+    - **POST**: `create[Entity]` (예: `createDataSet`, `createUser`)
+    - **PUT**: `update[Entity]` (예: `updateDataSet`, `updateUser`)
+    - **DELETE**: `delete[Entity]` (예: `deleteDataSet`, `deleteUser`)
+- **상세 규칙**:
+    - **목록 조회**: `get[Entity]List` 또는 `get[Entity]s` (예: `getDataSetList`, `getUsers`)
+    - **단건 조회**: `get[Entity]ById`, `get[Entity]By[조건]` (예: `getDataSetById`, `getUserByEmail`)
+    - **생성**: `create[Entity]` (예: `createDataSet`)
+    - **수정**: `update[Entity]` (예: `updateDataSet`)
+    - **삭제**: `delete[Entity]` (예: `deleteDataSet`)
+
+#### Service 계층
+- **인터페이스**: `[Entity]Service`, `[복합명사]Service`
+- **구현체**: `[Entity][추가명명]ServiceImpl`
+- **역할**: 비즈니스 로직을 담당하며, 트랜잭션 관리, 도메인 규칙, 데이터 가공 및 검증을 수행한다. Repository 계층을 통해 데이터에 접근하며, Controller와 Repository 사이의 중간 계층 역할을 한다.
+- **예시**: `DataSetService`, `DataSetValidServiceImpl`
+- **메소드 명명 패턴**:
+    - **업무에 종속적인 계층으로 접미사 get, create, update, delete 외에 추가 동사 + 명사조합으로 생성가능**
+    (예: `createFinData`, `searchVipUser` 등)
+
+#### Repository 계층
+- **명명 패턴**: `[Entity]Repository`
+- **역할**: 데이터베이스와의 직접적인 CRUD 작업을 담당한다. JPA 등 ORM을 활용하여 Entity 객체와 DB 간의 매핑을 수행한다. Service 계층에 데이터 액세스 기능을 제공한다.
+- **예시**: `SampleRepository`
+- **메소드 명명 패턴**: **JPA 생성규칙 룰에 맞추어 생성**
+
+#### Entity 계층
+- **명명 패턴**: `[Entity]` 테이블 명이 되는 단위로 명사조합으로 생성
+- **역할**: 데이터베이스 테이블과 매핑되는 도메인 객체로, 시스템의 핵심 비즈니스 데이터를 표현한다. JPA Entity로서 영속성 관리의 대상이 된다.
+- **예시**: `Sample`, `DataSet`
+
+#### DTO 계층
+- **Request DTO**: `[entity][Action]Request` (예: `DataSetCreateRequest`)
+- **Response DTO**: `[Domain][Action]Response` (예: `DatSsetCreateResponse`)
+- **역할**: 계층 간 데이터 전달을 위한 객체로, Entity와 분리하여 API 요청/응답, 서비스 내부 데이터 전달 등에 사용한다. 불필요한 데이터 노출을 방지하고, 계층 간 결합도를 낮춘다.
+- **위치**: `src/main/java/com/skax/aiplatform/dto/[domain]/request/`, `response/`
+
+#### Constant 
+- **명명 패턴**: `[업무Lv1]Constant`
+- **역할**: 외부 시스템(SKT AI 플랫폼 등)과의 통신을 담당하는 계층
+- **예시**: `AgentClient`, `ModelConstant`
+- **위치**: `src/main/java/com/skax/aiplatform/constant/`
+
+#### Client 계층 (FeignClient)
+- **명명 패턴**: 해당 솔루션 Swagger 기반으로 해당 솔루션 명명규칙 준수
+- **역할**: 외부 시스템(SKT AI 플랫폼 등)과의 통신을 담당하는 계층
+- **예시**: `SktAiDatasetClient`, `SktAiAuthenticationClient`
+- **위치**: `src/main/java/com/skax/aiplatform/client/sktai/[domain]/`
+
+## 4. 아키텍처 패턴
+
+### 4.1 Clean Architecture 적용
+```
+Controller → Service → Repository → Entity
+    ↓           ↓           ↓
+   DTO ←→    DTO ←→    JPA Entity
+```
+
+### 4.2 Client-Application DTO 분리 패턴
+```
+외부 API DTO (Client Layer) ↔ Converter ↔ Application DTO (Service Layer)
+```
+
+### 4.3 핵심 설계 원칙
+1. **DTO 독립성**: `dto내에 client/sktai/**/dto/**는 참조사용 금지`
+2. **계층 분리**: Controller는 Service만 호출, Service는 Repository만 호출
+3. **의존성 역전**: 고수준 모듈이 저수준 모듈에 의존하지 않음
+
+## 5. 개발 가이드라인
+
+### 5.1 AI 코딩 활용 현황
+- **GitHub Copilot**: 60% (일상적 코드 작성, 자동완성)
+- **GPT-4/Claude 3.5**: 30% (복잡한 로직, 아키텍처 설계)
+- **수동 작성**: 10% (핵심 비즈니스 로직, 보안 관련 코드)
+
+### 5.2 코드 품질 기준
+- **테스트 커버리지**: 80% 이상
+- **응답시간**: 500ms 이하 (95 percentile)
+- **가용성**: 99.9% uptime
+- **보안**: OWASP Top 10 준수
+
+### 5.3 주요 비즈니스 도메인
+- **인증 관리 도메인**: OAuth2, JWT 토큰 관리
+- **데이터 관리 도메인**: 데이터셋, 파일 업로드, 데이터 변환
+- **AI 모델 도메인**: 모델 관리, AI 에이전트, 지식베이스
+- **시스템 관리 도메인**: 모니터링, 로깅, 헬스체크

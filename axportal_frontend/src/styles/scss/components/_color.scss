@@ -1,0 +1,363 @@
+@charset "UTF-8";
+.primary {
+  &-800 {
+    color: #005df9;
+  }
+  &-600 {
+    color: #576072;
+  }
+  &-700 {
+    color: #373e4d;
+  }
+}
+
+.secondary {
+  &-neutral {
+    &-p {
+      color: #000;
+    }
+    &-500 {
+      color: #7e889b;
+    }
+    &-600 {
+      color: #576072;
+    }
+    &-700 {
+      color: #373e4d;
+    }
+    &-800 {
+      color: #242a34;
+    }
+    &-900 {
+      color: #121315;
+    }
+    &-f {
+      color: #fff;
+    }
+  }
+}
+
+.semantic {
+  &-state {
+    &-red {
+      color: #d61111;
+    }
+  }
+  &-deep {
+    color: #545454;
+    &-red {
+      color: #e21717;
+    }
+  }
+}
+
+// 테일윈드 클래스명이 유사하여 중첩되지않게 정의
+.bg-col {
+  &-gray {
+    &-100 {
+      background-color: #f9fafb;
+    }
+  }
+}
+
+.section-popup-content {
+  .bg-col-gray-100 {
+    &:hover {
+      background-color: #f3f4f6;
+    }
+  }
+}
+
+/* Brand Color Classes */
+.bg-brand-primary {
+  background-color: var(--color-brand-primary);
+}
+
+.text-brand-primary {
+  color: var(--color-brand-primary);
+}
+
+.border-brand-primary {
+  border-color: var(--color-brand-primary);
+}
+
+/* Custom Blue Colors */
+.bg-blue-100 {
+  background-color: var(--color-blue-100);
+}
+.bg-blue-200 {
+  background-color: var(--color-blue-200);
+}
+.bg-blue-300 {
+  background-color: var(--color-blue-300);
+}
+.bg-blue-400 {
+  background-color: var(--color-blue-400);
+}
+.bg-blue-500 {
+  background-color: var(--color-blue-500);
+}
+.bg-blue-600 {
+  background-color: var(--color-blue-600);
+}
+.bg-blue-700 {
+  background-color: var(--color-blue-700);
+}
+.bg-blue-800 {
+  background-color: var(--color-blue-800);
+}
+.bg-blue-900 {
+  background-color: var(--color-blue-900);
+}
+
+.text-blue-100 {
+  color: var(--color-blue-100);
+}
+.text-blue-200 {
+  color: var(--color-blue-200);
+}
+.text-blue-300 {
+  color: var(--color-blue-300);
+}
+.text-blue-400 {
+  color: var(--color-blue-400);
+}
+.text-blue-500 {
+  color: var(--color-blue-500);
+}
+.text-blue-600 {
+  color: var(--color-blue-600);
+}
+.text-blue-700 {
+  color: var(--color-blue-700);
+}
+.text-blue-800 {
+  color: var(--color-blue-800);
+}
+.text-blue-900 {
+  color: var(--color-blue-900);
+}
+
+/* Custom Gray Colors */
+.bg-gray-100 {
+  background-color: var(--color-gray-100);
+}
+.bg-gray-200 {
+  background-color: var(--color-gray-200);
+}
+.bg-gray-300 {
+  background-color: var(--color-gray-300);
+}
+.bg-gray-400 {
+  background-color: var(--color-gray-400);
+}
+.bg-gray-500 {
+  background-color: var(--color-gray-500);
+}
+.bg-gray-550 {
+  background-color: var(--color-gray-550);
+}
+.bg-gray-600 {
+  background-color: var(--color-gray-600);
+}
+.bg-gray-700 {
+  background-color: var(--color-gray-700);
+}
+.bg-gray-800 {
+  background-color: var(--color-gray-800);
+}
+.bg-gray-900 {
+  background-color: var(--color-gray-900);
+}
+
+.text-gray-100 {
+  color: var(--color-gray-100);
+}
+.text-gray-200 {
+  color: var(--color-gray-200);
+}
+.text-gray-300 {
+  color: var(--color-gray-300);
+}
+.text-gray-400 {
+  color: var(--color-gray-400);
+}
+.text-gray-500 {
+  color: var(--color-gray-500);
+}
+.text-gray-550 {
+  color: var(--color-gray-550);
+}
+.text-gray-600 {
+  color: var(--color-gray-600);
+}
+.text-gray-700 {
+  color: var(--color-gray-700);
+}
+.text-gray-800 {
+  color: var(--color-gray-800);
+}
+.text-gray-900 {
+  color: var(--color-gray-900);
+}
+
+.border-gray-100 {
+  border-color: var(--color-gray-100);
+}
+.border-gray-200 {
+  border-color: var(--color-gray-200);
+}
+.border-gray-300 {
+  border-color: var(--color-gray-300);
+}
+.border-gray-400 {
+  border-color: var(--color-gray-400);
+}
+.border-gray-500 {
+  border-color: var(--color-gray-500);
+}
+.border-gray-550 {
+  border-color: var(--color-gray-550);
+}
+.border-gray-600 {
+  border-color: var(--color-gray-600);
+}
+.border-gray-700 {
+  border-color: var(--color-gray-700);
+}
+.border-gray-800 {
+  border-color: var(--color-gray-800);
+}
+.border-gray-900 {
+  border-color: var(--color-gray-900);
+}
+
+.border-blue-100 {
+  border-color: var(--color-blue-100);
+}
+.border-blue-200 {
+  border-color: var(--color-blue-200);
+}
+.border-blue-300 {
+  border-color: var(--color-blue-300);
+}
+.border-blue-400 {
+  border-color: var(--color-blue-400);
+}
+.border-blue-500 {
+  border-color: var(--color-blue-500);
+}
+.border-blue-600 {
+  border-color: var(--color-blue-600);
+}
+.border-blue-700 {
+  border-color: var(--color-blue-700);
+}
+.border-blue-800 {
+  border-color: var(--color-blue-800);
+}
+.border-blue-900 {
+  border-color: var(--color-blue-900);
+}
+
+/* Dimmed Color */
+.bg-dimmed {
+  background-color: var(--color-dimmed);
+}
+.text-dimmed {
+  color: var(--color-dimmed);
+}
+
+/* Semantic Colors */
+.text-negative-red {
+  color: var(--color-negative-red);
+}
+.bg-negative-red {
+  background-color: var(--color-negative-red);
+}
+.border-negative-red {
+  border-color: var(--color-negative-red);
+}
+.text-in-progress {
+  color: var(--color-in-progress);
+}
+.bg-in-progress {
+  background-color: var(--color-in-progress);
+}
+
+/* Label Colors */
+.text-label01 {
+  color: var(--color-label01);
+}
+.bg-label01 {
+  background-color: var(--bg-label01);
+}
+.text-label02 {
+  color: var(--color-label02);
+}
+.bg-label02 {
+  background-color: var(--bg-label02);
+}
+.text-label03 {
+  color: var(--color-label03);
+}
+.bg-label03 {
+  background-color: var(--bg-label03);
+}
+.text-label04 {
+  color: var(--color-label04);
+}
+.bg-label04 {
+  background-color: var(--bg-label04);
+}
+.text-label05 {
+  color: var(--color-label05);
+}
+.bg-label05 {
+  background-color: var(--bg-label05);
+}
+
+/* Label Gray Colors */
+.text-gray-label01 {
+  color: var(--color-gray-label01);
+}
+.bg-gray-label01 {
+  background-color: var(--bg-gray-label01);
+}
+.text-gray-label02 {
+  color: var(--color-gray-label02);
+}
+.bg-gray-label02 {
+  background-color: var(--bg-gray-label02);
+}
+
+/* Gauge Colors */
+.bg-gauge {
+  background-color: var(--bg-gauge);
+}
+.text-blue-gauge {
+  color: var(--color-blue-gauge);
+}
+.bg-blue-gauge {
+  background-color: var(--bg-blue-gauge);
+}
+.text-green-gauge {
+  color: var(--color-green-gauge);
+}
+.bg-green-gauge {
+  background-color: var(--bg-green-gauge);
+}
+.text-purple-gauge {
+  color: var(--color-purple-gauge);
+}
+.bg-purple-gauge {
+  background-color: var(--bg-pruple-gauge);
+}
+
+// Agent Bg
+.bg-agent-green {
+  background-color: #dcfce7;
+}
+.bg-agent-red {
+  background-color: #ffe2e2;
+}

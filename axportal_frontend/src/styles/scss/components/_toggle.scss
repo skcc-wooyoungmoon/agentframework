@@ -1,0 +1,234 @@
+@charset "UTF-8";
+
+/* Toggle */
+.toggle {
+  --w: 46px;
+  --h: 24px;
+  --thumb: 22px;
+  --shift: calc(var(--w) - var(--h)); /* 22px */
+
+  &.sm {
+    --w: 38px;
+    --h: 20px;
+    --thumb: 18px;
+    --shift: calc(var(--w) - var(--h)); /* 18px */
+  }
+
+  &-wrap {
+    display: inline-flex;
+    gap: 8px;
+
+    .toggle-label {
+      display: inline-block;
+      color: var(--gray-600);
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: var(--font-weight-regular);
+    }
+  }
+
+  position: relative;
+  display: inline-block;
+  width: var(--w);
+  height: var(--h);
+  cursor: pointer;
+  vertical-align: middle;
+
+  > input[type='checkbox'][role='switch'] {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: inherit;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: var(--gray-550);
+    transition:
+      background-color 160ms ease,
+      opacity 160ms ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: var(--thumb);
+    height: var(--thumb);
+    top: calc((var(--h) - var(--thumb)) / 2);
+    left: calc((var(--h) - var(--thumb)) / 2);
+    border-radius: 50%;
+    background: var(--white);
+    box-sizing: border-box;
+    transition:
+      transform 160ms ease,
+      border-color 160ms ease;
+  }
+
+  &:has(> input:checked)::before {
+    background: var(--blue-700);
+  }
+
+  &:has(> input:checked)::after {
+    transform: translateX(var(--shift));
+    border-color: var(--blue-700);
+  }
+
+  &:has(> input:disabled) {
+    cursor: not-allowed;
+  }
+
+  &:has(> input:disabled)::before {
+    background: var(--gray-300);
+  }
+
+  &:has(> input:disabled)::after {
+    border-color: var(--gray-300);
+    opacity: 0.9;
+  }
+
+  &:has(> input:disabled:checked)::before {
+    background: var(--blue-300);
+  }
+
+  &:has(> input:disabled:checked)::after {
+    transform: translateX(var(--shift));
+    border-color: var(--blue-300);
+    opacity: 0.9;
+  }
+
+  /* =================== */
+  /* With Label (outside) - 기본 */
+  /* =================== */
+  .toggle-label {
+    margin-left: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--gray-600);
+  }
+
+  &:has(> input:disabled) .toggle-label {
+    color: var(--gray-600);
+  }
+
+  /* =================== */
+  /* With Label (inner) - inner 클래스 필요 */
+  /* =================== */
+  &.inner {
+    --w: 52px;
+
+    .toggle-text {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+      pointer-events: none;
+      color: var(--white);
+      right: 7px;
+    }
+
+    &:has(> input:checked) .toggle-text {
+      left: 7px;
+      right: auto;
+    }
+  }
+
+  /* =================== */
+  /* Toggle view */
+  /* =================== */
+  &-view {
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+    width: 74px;
+    height: 40px;
+    background-color: var(--gray-200);
+    border-radius: var(--radius-6);
+    padding: 4px;
+
+    &-option {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 32px;
+      border-radius: 4px;
+      background: var(--gray-200);
+      cursor: pointer;
+      transition: background-color 0.16s ease;
+
+      /* 활성 + checked */
+      &:has(> input[type='radio']:checked:not(:disabled)) {
+        background-color: var(--white);
+      }
+
+      /* checked + disabled */
+      &:has(> input[type='radio']:checked:disabled) {
+        background-color: var(--gray-100);
+        cursor: not-allowed;
+      }
+
+      /* 단순 disabled */
+      &:has(> input[type='radio']:disabled) {
+        cursor: not-allowed;
+      }
+
+      > input[type='radio'] {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        background: none !important;
+        border: 0 !important;
+        cursor: pointer;
+
+        &:focus-visible + i {
+          outline: 2px solid rgba(0, 0, 0, 0.25);
+          outline-offset: 2px;
+          border-radius: 6px;
+        }
+
+        /* Card */
+        &[value='card'] + i {
+          background-image: url(/public/assets/images/system/ico-system-24-toggle-area-card.svg);
+        }
+        &[value='card']:checked + i {
+          background-image: url(/public/assets/images/system/ico-system-24-toggle-area-card-on.svg);
+        }
+        &[value='card']:checked:disabled + i {
+          background-image: url(/public/assets/images/system/ico-system-24-toggle-area-card.svg);
+        }
+
+        /* Grid */
+        &[value='grid'] + i {
+          background-image: url(/public/assets/images/system/ico-system-24-toggle-area-list.svg);
+        }
+        &[value='grid']:checked + i {
+          background-image: url(/public/assets/images/system/ico-system-24-toggle-area-list-on.svg);
+        }
+        &[value='grid']:checked:disabled + i {
+          background-image: url(/public/assets/images/system/ico-system-24-toggle-area-list.svg);
+        }
+      }
+
+      > i {
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+}

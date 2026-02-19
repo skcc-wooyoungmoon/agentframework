@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+$image-path: './../img/';
+
+/* =========================
+   Design Tokens (예시 값)
+   실제 프로젝트의 토큰 시스템과 연결하세요.
+   ========================= */
+:root {
+  --font-family-sans: 'pretendard', sans-serif;
+  /* line-height도 함께 설정 */ /* Brand Colors */
+  /* 신한은행 브랜드 컬러를 대표하는 색상입니다.
+  앱 런처 아이콘, 스플래시, 신한은행 심볼마크 등 브랜드와 관련된 요소에 대표 색상으로 활용합니다. */
+  --color-brand-primary: #0046ff;
+  --color-white: #ffffff;
+  /* Primary Color */
+  /* Blue Color Palette */
+  --color-blue-100: #eff5ff;
+  --color-blue-200: #e5eeff;
+  --color-blue-300: #cde0ff;
+  --color-blue-400: #9dc1ff;
+  --color-blue-500: #689eff;
+  --color-blue-600: #4a86ff;
+  --color-blue-700: #2670ff;
+  --color-blue-800: #005df9;
+  --color-blue-900: #0047e7;
+  /* Gray Color Palette */
+  --color-gray-100: #f3f6fb;
+  --color-gray-200: #e7edf6;
+  --color-gray-300: #dce2ed;
+  --color-gray-400: #c7cedc;
+  --color-gray-500: #8b95a9;
+  --color-gray-550: #7e889b;
+  --color-gray-600: #576072;
+  --color-gray-700: #373e4d;
+  --color-gray-800: #242a34;
+  --color-gray-900: #121315;
+  /* Dimmed Color */
+  /* Dimmed 처리되는 바닥 색상입니다.
+  Step page에 사용됩니다. */
+  --color-dimmed: rgba(0, 0, 0, 0.6);
+  /* Secondary Color */
+  /* 콘텐츠의 특성을 고려하여 포인트나 강조 표현이 필요한 경우 사용합니다.
+  데이터 및 정보, 콘텐츠를 보조하는 색상으로 UI의 일부를 강조하거나 구분이 필요한 경우 사용합니다. */
+  /* Custom Font Sizes */
+  --font-size-headline-1: 37.333px;
+  --line-height-headline-1: 40px;
+  --font-size-headline-2-product: 34.667px;
+  --line-height-headline-2-product: 36px;
+  --font-size-headline-2: 32px;
+  --line-height-headline-2: 34px;
+  --font-size-title-1: 29.333px;
+  --line-height-title-1: 32px;
+  --font-size-title-2: 26.667px;
+  --line-height-title-2: 28px;
+  --font-size-title-3: 24px;
+  --line-height-title-3: 26px;
+  --font-size-title-4: 21.333px;
+  --line-height-title-4: 24px;
+  --font-size-body-1: 21.333px;
+  --line-height-body-1: 24px;
+  --font-size-body-2: 18.667px;
+  --line-height-body-2: 20px;
+  --font-size-body-3: 17.333px;
+  --line-height-body-3: 20px;
+  --font-size-caption-1: 17.333px;
+  --line-height-caption-1: 20px;
+  --font-size-caption-2: 16px;
+  --line-height-caption-2: 20px;
+  --font-size-appbar-1: 26.667px;
+  --line-height-appbar-1: 32px;
+  --font-size-appbar-2: 21.333px;
+  --line-height-appbar-2: 24px;
+  --font-size-bottom-1: 14.667px;
+  --line-height-bottom-1: 14px;
+  --font-size-notice: 14px;
+  --line-height-notice: 20px;
+  /* Secondary Color */
+  /* 콘텐츠의 특성을 고려하여 포인트나 강조 표현이 필요한 경우 사용합니다.
+  데이터 및 정보, 콘텐츠를 보조하는 색상으로 UI의 일부를 강조하거나 구분이 필요한 경우 사용합니다. */
+  /* Semantic */
+  /* 화면 내 정보에서 특정 상태에 대한 안내를 강조하는 색상입니다. 주로 색상 구분이 필요한 데이터 정보 영역에 사용합니다. */
+  --color-negative-red: #d61111;
+  --color-in-progress: #008479;
+  /* Label Color */
+  /* 데이터를 나타내는 색상입니다. 데이터의 특성과 의미를 시각적으로 전달하고 이해하기 쉽게 도와줍니다. */
+  --color-label01: #005df9;
+  --bg-label01: #eff5ff;
+  --color-label02: #6448ba;
+  --bg-label02: #f7f5fe;
+  --color-label03: #d61111;
+  --bg-label03: #fff1f1;
+  --color-label04: #008479;
+  --bg-label04: #ebfffe;
+  --color-label05: #f13800;
+  --bg-label05: #ffeab5;
+  /* Label Gray */
+  /* 데이터를 나타내는 색상입니다. 데이터의 특성과 의미를 시각적으로 전달하고 이해하기 쉽게 도와줍니다. */
+  --color-gray-label01: #7e889b;
+  --bg-gray-label01: #f3f6fb;
+  --color-gray-label02: #ffffff;
+  --bg-gray-label02: #8b95a9;
+  /* Color Gauge */
+  /* 자원 할당에 사용되는 색상입니다. */
+  --bg-gauge: #e5eeff;
+  --color-blue-gauge: #368ded;
+  --bg-blue-gauge: #368ded;
+  --color-green-gauge: #37d8d0;
+  --bg-green-gauge: #37d8d0;
+  --color-purple-gauge: #8166d2;
+  --bg-pruple-gauge: #8166d2;
+  /* 색상 */
+  --blue-700: #005df9;
+  --blue-800: #0047c5;
+  --gray-50: #f8f9fc;
+  --gray-100: #f3f6fb;
+  --gray-300: #dce2ed;
+  --gray-700: #373e4d;
+  --gray-800: #242a34;
+  --red-600: #e5484d;
+  --green-600: #0f9d58;
+  /* 글꼴 */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  /* 간격 */
+  --gap-sm: 8px;
+  --pad-sm: 12px;
+  --pad-md: 16px;
+  /* 색상 */
+  --blue-700: #005df9;
+  --blue-800: #0047c5;
+  --gray-50: #f8f9fc;
+  --gray-100: #f3f6fb;
+  --gray-300: #dce2ed;
+  --gray-700: #373e4d;
+  --gray-800: #242a34;
+  --red-600: #e5484d;
+  --green-600: #0f9d58;
+
+  /* 글꼴 */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+
+  /* 간격 */
+  --gap-sm: 8px;
+  --pad-sm: 12px;
+  --pad-md: 16px;
+}

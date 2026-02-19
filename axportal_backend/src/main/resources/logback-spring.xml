@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <!-- 공통 속성 설정 -->
+    <property name="LOG_PATH" value="${LOG_PATH:-logs}" />
+    <property name="LOG_FILE" value="${LOG_FILE:-axportal-backend}" />
+    <property name="MAX_FILE_SIZE" value="${LOG_MAX_FILE_SIZE:-100MB}" />
+    <property name="MAX_HISTORY" value="${LOG_MAX_HISTORY:-30}" />
+    <property name="TOTAL_SIZE_CAP" value="${LOG_TOTAL_SIZE_CAP:-3GB}" />
+
+    <!-- 커스텀 콘솔 로그 패턴 (개발 환경용) -->
+    <property name="CUSTOM_CONSOLE_LOG_PATTERN" 
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %-40.40logger{39}: %m%n%ex"/>
+
+              <!-- value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p [%15.15t] %-40.40logger{39} [%X{traceId:-},%X{spanId:-}] : %m%n%ex"/> -->
+
+    <!-- JSON 로그 패턴 (운영 환경용) -->
+    <property name="JSON_LOG_PATTERN" 
+              value='{"timestamp":"%d{yyyy-MM-dd HH:mm:ss.SSS}","level":"%level","thread":"%thread","logger":"%logger","traceId":"%X{traceId:-}","spanId":"%X{spanId:-}","parentSpanId":"%X{parentSpanId:-}","userId":"%X{userId:-}","requestUri":"%X{requestUri:-}","requestMethod":"%X{requestMethod:-}","clientIp":"%X{clientIp:-}","userAgent":"%X{userAgent:-}","message":"%message","exception":"%ex"}%n'/>
+
+    <!-- 환경별 프로파일 설정 -->
+    
+    <!-- elocal, local 환경 (콘솔 출력만) -->
+    <springProfile name="elocal,local">
+
+        <logger name="com.skax.aiplatform" level="INFO" />
+        <logger name="org.springframework" level="INFO" />
+        <logger name="com.tmax.tibero" level="INFO" />
+        <logger name="org.hibernate.SQL" level="INFO" />
+        <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" />
+    </springProfile>
+
+
+
+<!-- edev 환경 (PostgreSQL 개발) -->
+    <springProfile name="edev">
+
+        <logger name="com.skax.aiplatform" level="INFO" />
+        <logger name="org.springframework" level="INFO" />
+        <logger name="com.tmax.tibero" level="INFO" />
+        <logger name="org.hibernate.SQL" level="INFO" />
+        <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" />
+    </springProfile>
+
+
+    <!-- dev 환경 (Tibero 개발) -->
+    <springProfile name="dev">
+        <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}.json</file>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>${MAX_HISTORY}</maxHistory>
+                <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <!-- 에러 로그 별도 파일 -->
+        <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}-error.json</file>
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>ERROR</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-error-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>${MAX_HISTORY}</maxHistory>
+                <totalSizeCap>1GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <logger name="com.skax.aiplatform" level="INFO" />
+        <logger name="org.springframework" level="WARN" />
+        <logger name="com.tmax.tibero" level="WARN" />
+        
+        <root level="INFO">
+            <appender-ref ref="JSON_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+        </root>
+    </springProfile>
+
+    <!-- staging 환경 -->
+    <springProfile name="staging">
+        <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}.json</file>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>${MAX_HISTORY}</maxHistory>
+                <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}-error.json</file>
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>ERROR</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-error-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>${MAX_HISTORY}</maxHistory>
+                <totalSizeCap>1GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <!-- 성능 로그 별도 파일 -->
+        <appender name="PERF_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}-performance.json</file>
+            <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+                <evaluator>
+                    <expression>message.contains("REQUEST_END") || message.contains("API_CALL_END")</expression>
+                </evaluator>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-performance-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>50MB</maxFileSize>
+                <maxHistory>14</maxHistory>
+                <totalSizeCap>1GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <logger name="com.skax.aiplatform" level="INFO" />
+        <logger name="org.springframework" level="WARN" />
+        <logger name="com.tmax.tibero" level="WARN" />
+        
+        <root level="WARN">
+            <appender-ref ref="JSON_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+            <appender-ref ref="PERF_FILE" />
+        </root>
+    </springProfile>
+
+    <!-- prod 환경 (운영) -->
+    <springProfile name="prod">
+        <!-- 애플리케이션 로그 -->
+        <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}.json</file>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>${MAX_HISTORY}</maxHistory>
+                <totalSizeCap>${TOTAL_SIZE_CAP}</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <!-- 에러 로그 -->
+        <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}-error.json</file>
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>ERROR</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-error-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+                <maxHistory>60</maxHistory>
+                <totalSizeCap>2GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <!-- 성능 로그 -->
+        <appender name="PERF_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}-performance.json</file>
+            <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+                <evaluator>
+                    <expression>message.contains("REQUEST_END") || message.contains("API_CALL_END")</expression>
+                </evaluator>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-performance-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>50MB</maxFileSize>
+                <maxHistory>30</maxHistory>
+                <totalSizeCap>2GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <!-- 감사 로그 (보안 관련) -->
+        <appender name="AUDIT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_PATH}/${LOG_FILE}-audit.json</file>
+            <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+                <evaluator>
+                    <expression>loggerName.contains("AUDIT") || message.contains("LOGIN") || message.contains("LOGOUT") || message.contains("ACCESS_DENIED")</expression>
+                </evaluator>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <encoder>
+                <pattern>${JSON_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_PATH}/${LOG_FILE}-audit-%d{yyyy-MM-dd}-%i.json</fileNamePattern>
+                <maxFileSize>50MB</maxFileSize>
+                <maxHistory>90</maxHistory>
+                <totalSizeCap>5GB</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        
+        <logger name="com.skax.aiplatform" level="WARN" />
+        <logger name="org.springframework" level="ERROR" />
+        <logger name="com.tmax.tibero" level="ERROR" />
+        <logger name="AUDIT" level="INFO" additivity="false">
+            <appender-ref ref="AUDIT_FILE" />
+        </logger>
+        
+        <root level="WARN">
+            <appender-ref ref="JSON_FILE" />
+            <appender-ref ref="ERROR_FILE" />
+            <appender-ref ref="PERF_FILE" />
+        </root>
+    </springProfile>
+
+    <!-- 기본 설정 (프로파일이 지정되지 않은 경우) -->
+    <springProfile name="!elocal,!local,!edev,!dev,!staging,!prod">
+        <appender name="CUSTOM_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${CUSTOM_CONSOLE_LOG_PATTERN}</pattern>
+                <charset>UTF-8</charset>
+            </encoder>
+        </appender>
+        
+        <logger name="com.skax.aiplatform" level="DEBUG" />
+        
+        <root level="INFO">
+            <appender-ref ref="CUSTOM_CONSOLE" />
+        </root>
+    </springProfile>
+
+</configuration>

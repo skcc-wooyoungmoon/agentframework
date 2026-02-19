@@ -1,0 +1,89 @@
+@charset "UTF-8";
+.date-picker {
+  position: absolute;
+  display: none;
+  top: 58px;
+  &.on {
+    display: block;
+  }
+}
+.datepicker-wrap {
+  position: relative;
+  .form-group {
+    gap: 0;
+  }
+}
+
+/* UIDatePicker Custom Classes */
+.datepicker-container {
+  width: 320px;
+  min-height: 284px;
+  padding: 24px 24px 16px 24px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+}
+
+.datepicker-header-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.datepicker-weekday {
+  width: 32px;
+  height: 28px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.datepicker-weekday-sunday {
+  color: var(--color-negative-red);
+}
+
+.datepicker-weekday-normal {
+  color: var(--color-gray-800);
+}
+
+.datepicker-date-button {
+  width: 32px !important;
+  height: 28px !important;
+  min-width: 32px !important;
+  min-height: 28px !important;
+  max-width: 32px !important;
+  max-height: 28px !important;
+  padding: 4px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  line-height: 20px !important;
+  text-align: center !important;
+  border: none !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+.datepicker-date-button:disabled {
+  cursor: not-allowed !important;
+}
+
+.datepicker-date-selected {
+  background-color: var(--color-blue-800) !important;
+  color: var(--color-white) !important;
+  border-radius: 6px !important;
+}
+
+.datepicker-date-sunday {
+  color: var(--color-negative-red);
+}
+
+.datepicker-date-normal {
+  color: var(--color-gray-800);
+}
+
+.datepicker-date-other-month {
+  opacity: 0.2;
+}
+
+.datepicker-date-current-month {
+  opacity: 1;
+}

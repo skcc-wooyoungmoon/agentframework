@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace는 인터페이스의 전체 경로와 정확히 일치해야 함 -->
+<mapper namespace="com.skax.aiplatform.mapper.common.ApprovalMapper">
+
+    <select id="findApprovalCallbackInfo" parameterType="String" resultType="com.skax.aiplatform.dto.common.response.ApprovalCallbackInfo">
+        select m.gylj_ttl, m.member_id, m.dtl_ctnt
+        from gpo_gylj_mas m
+        where m.gylj_resp_id = #{gyljRespId}
+    </select>
+
+     <select id="findApprovalCancelInfo" parameterType="String"
+            resultType="com.skax.aiplatform.dto.common.response.ApprovalCancelInfo">
+        select m.gylj_id, m.gylj_resp_id, m.gyljja_member_id, m.member_id, m.dtl_ctnt
+        from gpo_gylj_mas m
+        where dtl_ctnt like #{documentId} || '%'
+    </select>
+
+    <select id="findApprovalUsrInfo" parameterType="String" resultType="com.skax.aiplatform.dto.common.response.ApprovalUserInfo">
+        select  c.api_spcl_v, m.member_id, m.gyljja_member_id,  c.gyljja_member_id, u.dept_nm, u.jkw_nm,
+                TO_CHAR(c.fst_created_at, 'YYYY-MM-DD HH24:MI:SS') as fst_created_at
+        from gpo_gylj_mas m
+                 join gpo_gylj_callback_mas c on ( c.gylj_resp_id = m.gylj_resp_id )
+                 join gpo_users_mas u  on (u.member_id = m.gyljja_member_id )
+        where dtl_ctnt like #{projectId} || '%'
+    </select>
+
+    <select id="findApprovalProjectInfo" parameterType="map" resultType="com.skax.aiplatform.dto.common.response.ApprovalProjectInfo">
+        select u.member_id, u.jkw_nm, u.dept_nm, p.gpo_prj_nm AS prj_nm, '프로젝트 관리'
+        from gpo_prjuserrole_map_mas m
+                 join gpo_projects_mas p on (p.prj_seq = m.prj_seq)
+                 join gpo_users_mas u on (u.member_id = m.member_id)
+        where m.member_id = #{username}
+          and p.uuid = #{projectId}
+    </select>
+
+
+</mapper>

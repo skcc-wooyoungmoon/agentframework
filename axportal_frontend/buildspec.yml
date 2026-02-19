@@ -1,0 +1,67 @@
+version: 0.2
+
+env:
+  variables:
+    # NOTE: The following variables are placeholders.
+    # They should be configured in the AWS CodeBuild project environment settings.
+
+    AWS_ACCOUNT_ID: '356062354410'
+    AWS_DEFAULT_REGION: 'ap-northeast-2'
+    IMAGE_REPO_NAME: 'axplatform/axportal_frontend'
+    CLUSTER_NAME: 'axportal-eks'
+
+phases:
+  # install: Node.js 런타임 버전을 지정하고 'npm install'을 실행하여 의존성을 설치합니다.
+  install:
+    runtime-versions:
+      nodejs: 22
+    commands:
+      - echo pnpm install
+      - npm install -g pnpm@latest-10
+      - echo Installing dependencies...
+      # esbuild 버전 충돌 방지를 위해 캐시된 node_modules 삭제
+      - rm -rf node_modules
+      - pnpm install
+      # kubectl 설치
+      - echo Installing kubectl...
+      - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.33.0/2025-05-01/bin/linux/amd64/kubectl
+      - chmod +x ./kubectl
+      - mv kubectl /usr/local/bin/
+  # pre_build: 빌드를 시작하기 전에 필요한 사전 준비 작업을 수행합니다.
+  pre_build:
+    commands:
+      # Amazon ECR에 로그인합니다.
+      # CodeBuild 환경 변수에서 AWS 계정 ID, 리전, ECR 리포지토리 이름을 사용합니다.
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      # ECR 리포지토리 URI와 이미지 태그를 변수로 설정합니다.
+      - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+      # - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      # - IMAGE_TAG=latest
+      - IMAGE_TAG=$(date +%Y%m%d-%H%M%S)
+  # build: 애플리케이션을 빌드하고 Docker 이미지를 생성합니다.
+  build:
+    commands:
+      # React 애플리케이션을 빌드하여 'dist' 디렉터리를 생성합니다.
+      - echo Building the React application...
+      - pnpm build --mode edev
+      # Dockerfile을 사용하여 Docker 이미지를 빌드합니다.
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+  # post_build: 빌드가 완료된 후 이미지를 ECR에 푸시하는 등 마무리 작업을 수행합니다.
+  post_build:
+    commands:
+      # 빌드된 Docker 이미지를 Amazon ECR로 푸시합니다.
+      - echo Pushing the Docker image to ECR...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo change image tag in Deployment
+      - |
+        sed -i "s|\(image: .*\):.*|\1:${IMAGE_TAG}|g" k8s/02-deployment.yaml
+      - echo Updating kubeconfig...
+      - aws eks update-kubeconfig --name $CLUSTER_NAME
+      - echo Deploying to EKS...
+      - kubectl apply -f k8s/
+      - echo Build and deployment completed on `date`
+cache:
+  paths:
+    - /root/.local/share/pnpm/store/**/* # pnpm store 캐시

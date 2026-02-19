@@ -1,0 +1,10 @@
+
+> axportal_frontend@0.0.0 build D:\dev\workspace\shinhanai\pub\axportal_frontend
+> tsc -b && vite build "--mode" "elocal"
+
+src/components/common/layout/MainLayout.tsx(193,11): error TS2322: Type '{ menu: UILnbMenuItemType; subMenu?: UILnbMenuItemType | undefined; }' is not assignable to type '{ menu: UILnbMenuItemType | null; subMenu: UILnbMenuItemType | null; }'.
+  Types of property 'subMenu' are incompatible.
+    Type 'UILnbMenuItemType | undefined' is not assignable to type 'UILnbMenuItemType | null'.
+      Type 'undefined' is not assignable to type 'UILnbMenuItemType | null'.
+src/pages/data/dataStor/MDPackageDetailPage.tsx(21,11): error TS6133: 'openAlert' is declared but its value is never read.
+ ELIFECYCLE  Command failed with exit code 2.

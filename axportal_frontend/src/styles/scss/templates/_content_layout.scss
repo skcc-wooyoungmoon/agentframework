@@ -1,0 +1,141 @@
+@charset "UTF-8";
+
+section.section-page {
+  & > div {
+    & + div {
+      margin-top: 48px;
+    }
+    > article {
+      & + article {
+        margin-top: 32px;
+      }
+      &.article-filter {
+        & + .article-grid {
+          margin-top: 48px;
+
+          .article-body {
+            & + .article-footer {
+              margin-top: 24px;
+            }
+          }
+        }
+      }
+    }
+
+    &.page-header {
+    }
+    &.page-body {
+      article {
+        & + article {
+          margin-top: 32px;
+        }
+      }
+    }
+    &.page-footer {
+    }
+  }
+
+  article {
+    & > .article-header {
+      margin-bottom: 12px;
+    }
+    &.article-grid {
+      & > .article-header {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+section.section-popup-aside {
+  & > div {
+    & + div {
+      margin-top: 32px;
+    }
+    > article {
+      & + article {
+        margin-top: 32px;
+      }
+      &.article-filter {
+        & + .article-grid {
+          margin-top: 48px;
+        }
+      }
+    }
+  }
+
+  article {
+    & > .article-header {
+      margin-bottom: 12px;
+    }
+    &.article-grid {
+      & > .article-header {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+section.section-popup-content {
+  padding: 40px;
+  & > div {
+    & + div {
+      margin-top: 32px;
+    }
+    > article {
+      & + article {
+        margin-top: 32px;
+      }
+      &.article-filter {
+        & + .article-grid {
+          margin-top: 48px;
+        }
+      }
+    }
+  }
+
+  article {
+    & > .article-header {
+      margin-bottom: 12px;
+    }
+    &.grid-wrap {
+      & > .article-header {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+section.section-modal {
+  // 다시주석처리
+  // .article-grid {
+  //   height: 456px; // 디폴트 고정값
+  //   overflow-y: auto;
+  // }
+  > article {
+    & + article {
+      margin-top: 32px;
+    }
+    &.article-filter {
+      & + .article-grid {
+        margin-top: 32px;
+      }
+    }
+    &.article-dataList {
+      & + .article-grid {
+        margin-top: 40px;
+      }
+    }
+  }
+
+  article {
+    & > .article-header {
+      margin-bottom: 12px;
+    }
+    &.grid-wrap {
+      & > .article-header {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,378 @@
+{
+  "input__basic": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "output_keys": [],
+    "field_default": {
+      "description": "사용자 질의 입력받았습니다... 🚀"
+    }
+  },
+  "output__keys": {
+    "input_keys": [],
+    "output_keys": [],
+    "field_default": {
+      "description": "응답 출력중입니다... 💬"
+    }
+  },
+  "output__chat": {
+    "input_keys": [],
+    "output_keys": [],
+    "field_default": {
+      "description": "응답 출력중입니다... 💬"
+    }
+  },
+  "agent__generator": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "context",
+        "comment": "참고 데이터(ex. retriever 결과)",
+        "required": false,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "content",
+        "comment": "Agent 응답",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Generator 수행중입니다...🤖"
+    }
+  },
+  "agent__categorizer": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "context",
+        "comment": "참고 데이터(ex. retriever 결과)",
+        "required": false,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "selected",
+        "comment": "질문의 분류값",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Categorizer 수행중입니다...🤖️"
+    }
+  },
+  "condition": {
+    "input_keys": [
+      {
+        "key": "item",
+        "comment": "조건을 비교할 변수",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "selected",
+        "comment": "조건의 분류값",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Condition 수행중입니다...⚖️"
+    }
+  },
+  "union": {
+    "input_keys": [],
+    "output_keys": [
+      {
+        "key": "content",
+        "comment": "union result",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Union 수행중입니다...🤖"
+    }
+  },
+  "agent__app": {
+    "input_keys": [],
+    "output_keys": [],
+    "field_default": {
+      "description": "AgentApp 호출중입니다...🤖"
+    }
+  },
+  "agent__reviewer": {
+    "input_keys": [
+      {
+        "key": "content",
+        "comment": "참고 데이터(ex. retriever 결과)",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": false,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "selected",
+        "comment": "조건의 분류값",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "reason",
+        "comment": "조건 분류 이유",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Reviewer 호출중입니다...🤖"
+    }
+  },
+  "agent__reactor": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "context",
+        "comment": "참고 데이터(ex. retriever 결과)",
+        "required": false,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "content",
+        "comment": "Agent 응답",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Reactor 호출중입니다...🤖"
+    }
+  },
+  "agent__coder": {
+    "input_keys": [],
+    "output_keys": [
+      {
+        "key": "content",
+        "comment": "Agent 응답",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Code 호출중입니다...🚀",
+      "code": "# Add function here.\n# 1. Tool should be defined as a function.\n# 2. The function argument name should be in the schema as a key. only string type is supported.\n# ex. ``\n# 3. Docstring ''' ''' should be written to guide proper use.\n# 4. The result `content` is returned as string type.\n# 5. For now, only python built-in modules can be supported.\ndef get_cosine(number: str) -> str:\n    '''This tool is an example'''\n    num = float(number)\n\n    import math\n    answer = math.cos(num)\n    content = f'Answer: {answer}'\n    return content\n"
+    },
+    "field_help_text": {
+      "code": "* 반드시 함수로 작성해야 함.\n* 함수의 변수명은 Node 의 Schema 에도 존재해야 하며, 변수의 타입은 str 만 허용함.\n* 함수는 반드시 Docstring(''' ''') 을 포함하여 작성해야 함. Docstring 은 함수의 용도에 대한 간단한 설명을 작성함.\n* 함수의 결과는 string type 으로 반환됨.\n* 현재는 Python 기본 모듈만을 지원함.\n"
+    }
+  },
+  "tool": {
+    "input_keys": [],
+    "output_keys": [
+      {
+        "key": "content",
+        "comment": "Tool 결과 값",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Tool 호출중입니다...🔧"
+    }
+  },
+  "retriever__rewriter_hyde": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "유사도 검색을 위한 질의",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "rewritten_queries",
+        "comment": "변경된 질의 결과",
+        "required": true,
+        "type": "list[str]"
+      }
+    ],
+    "field_default": {
+      "description": "Hyde 호출중입니다...🎯"
+    }
+  },
+  "retriever__rewriter_multiquery": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "유사도 검색을 위한 질의",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "rewritten_queries",
+        "comment": "변경된 질의 결과",
+        "required": true,
+        "type": "list[str]"
+      }
+    ],
+    "field_default": {
+      "description": "MultiQuery 호출중입니다...🎯"
+    }
+  },
+  "retriever__knowledge": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "rewritten_queries",
+        "comment": "LLM 에 의해 변경된 질의",
+        "required": false,
+        "type": "list[str]"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "context",
+        "comment": "knowledge 조회 결과, string formatting",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "docs",
+        "comment": "knowledge 조회 결과",
+        "required": false,
+        "type": "list[dict]"
+      }
+    ],
+    "field_default": {
+      "description": "knowledge 검색중입니다... 🔍",
+      "retrieval_options": {
+        "top_k": 5,
+        "threshold": 0.3
+      }
+    }
+  },
+  "retriever__doc_reranker": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "docs",
+        "comment": "knowledge 조회 결과",
+        "required": true,
+        "type": "list[str]"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "context",
+        "comment": "Context Refiner 응답",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Reranker 호출중입니다...🎯"
+    }
+  },
+  "retriever__doc_compressor": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "context",
+        "comment": "string 으로 변환된 knowledge 조회 결과",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "context",
+        "comment": "Context Refiner 응답",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Compressor 호출중입니다...🗜️"
+    }
+  },
+  "retriever__doc_filter": {
+    "input_keys": [
+      {
+        "key": "query",
+        "comment": "사용자 질의",
+        "required": true,
+        "type": "str"
+      },
+      {
+        "key": "context",
+        "comment": "string 으로 변환된 knowledge 조회 결과",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "output_keys": [
+      {
+        "key": "context",
+        "comment": "Context Refiner 응답",
+        "required": true,
+        "type": "str"
+      }
+    ],
+    "field_default": {
+      "description": "Filter 호출중입니다...️🧹"
+    }
+  }
+}

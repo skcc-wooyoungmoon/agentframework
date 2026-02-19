@@ -1,0 +1,118 @@
+/* tailwindcss 빌드되는 스타일 X 별도 .css 파일에 존재해야함 / style.css import */
+@import 'tailwindcss';
+@import '@/styles/style.css';
+
+/* 0919 : 가로스크롤 auto / 세로스크롤 hidden */
+html {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+html,
+body {
+  font-family: 'pretendard', 'sans-serif';
+}
+
+/* TextField Small Size Style */
+.textfield_small {
+  gap: 6px;
+  padding: 8px 12px;
+}
+
+/* Disable Hover Effect - 호버 시 모든 스타일 변화 방지 */
+.btn-option-outlined.disable-hover:hover {
+  background-color: transparent !important;
+  border: 1px solid #dce2ed !important;
+  color: #373e4d !important;
+  opacity: 1 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Typography Divider - before 구분선 */
+.has-divider::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: #121315;
+  margin: 1px 4px;
+  vertical-align: text-bottom;
+}
+
+/* Typography Required - after 필수 표시 */
+.ui-typography-required::after {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background-color: #d61111;
+  border-radius: 50%;
+  margin-left: 4px;
+  transform: translateY(-150%);
+  vertical-align: baseline;
+}
+
+.grid-type-check .ag-pinned-left-cols-container > div:last-child {
+  border-bottom: 1px solid #e7edf6;
+}
+
+/* 에이전트(빌더) 내부망 */
+.ag-btn-hover > button:hover {
+  background-color: #f9fafb;
+  transition: background-color 0.2s;
+}
+.btn-bg-del:hover {
+  cursor: pointer;
+  background-color: #f5e5e0;
+  transition: background-color 0.2s;
+}
+.ag-color-red {
+  color: #ef4444 !important;
+}
+.ag-border-red {
+  border-color: #ef4444 !important;
+}
+/* 줄바꿈처리 */
+.txt-wrap {
+  height: 14px;
+}
+
+/* 테스트중 빌더 > 노드 > 핸들 - 동그라미를 (>)화살표 수정 스타일만 수정하면됨 */
+/* .react-flow__handle[data-handleid='tool_left'] {
+  width: 16px !important;
+  height: 20px !important;
+  background-color: #3b82f6 !important;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.react-flow__handle-left[data-handleid='tool_left'].react-flow__handle.target {
+  width: 16px !important;
+  height: 20px !important;
+  background-color: #3b82f6 !important;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  border-radius: 0 !important;
+  border: none !important;
+} */
+
+.graph-wrap input::placeholder,
+.graph-wrap textarea::placeholder {
+  color: #b1b1b1 !important;
+}
+
+.btn-node-action {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 6px;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+.btn-node-action:hover {
+  cursor: pointer;
+  background-color: #f5e5e0;
+  transition: background-color 0.2s;
+}

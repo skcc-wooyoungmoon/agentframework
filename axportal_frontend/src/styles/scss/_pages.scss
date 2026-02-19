@@ -1,0 +1,36 @@
+@charset "UTF-8";
+// [admin]
+@use './pages/admin/_AD_010101';
+
+// [agent]
+@use './pages/agent/_AG_010101';
+
+// [common]
+@use './pages/common/CM_010101_P01';
+
+// [data]
+@use './pages/data/_DT_020101';
+
+// [deploy]
+@use './pages/deploy/_DP_010101';
+
+// [home]
+@use './pages/home/_HM_010101';
+
+// [log]
+@use './pages/log/_LO_010101';
+
+// [login]
+@use './pages/login/_LG_010101';
+
+// [model]
+@use './pages/model/_MD_010101';
+
+// [monitoring]
+@use './pages/monitoring/_MN_010101';
+
+// [pg]
+@use './pages/pg/_PG_010101';
+
+// [prompt]
+@use './pages/prompt/_PR_010101';

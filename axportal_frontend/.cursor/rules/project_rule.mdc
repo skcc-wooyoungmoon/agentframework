@@ -1,0 +1,136 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# AXPORTAL FRONTEND 프로젝트 구조 및 네이밍 컨벤션
+
+## 1. 전체 프로젝트 개요
+
+AXPORTAL FRONTEND는 **AXPortal을 구성하는 React 기반 프론트엔드 시스템**입니다.
+
+### 핵심 특징
+- **React + TypeScript** 기반
+- **Atomic Design** 및 **기능별 디렉토리 구조**
+- **유지보수성과 확장성을 고려한 컴포넌트 분리**
+
+## 2. 프로젝트 구조
+
+### 2.1 전체 디렉토리 구조
+```
+axportal_frontend/
+├── public/                             # 정적 파일(이미지, 폰트 등)
+├── src/
+│   ├── App.tsx                         # 앱 엔트리포인트
+│   ├── main.tsx                        # React DOM 진입점
+│   ├── index.css                       # 글로벌 스타일
+│   ├── components/                     # UI 컴포넌트(Atomic Design)
+│   │   ├── UI/                         # Atomic Design: atoms, molecules, organisms, templates
+│   │   └── common/                     # 공통 컴포넌트
+│   ├── constants/                      # 상수
+│   │   └── 화면업무Lv1/                  # 화면업무Lv1별 하위 폴더
+│   ├── pages/                          # 라우트 단위 페이지
+│   │   └── 화면업무Lv1/                  # 화면업무Lv1별 하위 폴더
+│   │       └── 화면업무Lv2/              # 화면업무Lv2별 하위 폴더
+│   │       └── 화면업무Lv2/              # 화면업무Lv2별 하위 폴더
+│   ├── routes/                         # 라우터 및 라우트 설정
+│   │   └── 화면업무Lv1/                  # 화면업무Lv1별 하위 폴더
+│   ├── hooks/                          # 커스텀 훅
+│   │   └── 화면업무Lv1/                  # 화면업무Lv1별 하위 폴더
+│   ├── services/                  # API 서비스/비즈니스 로직
+│   │   └── 업무Lv1/                     # 업무Lv1별 하위 폴더
+│   ├── stores/                         # 상태관리(store, context 등)
+│   │   └── 화면업무Lv1/                  # 화면업무Lv1별 하위 폴더
+│   ├── utils/                          # 유틸리티 함수
+│   │   └── 화면업무Lv1/                  # 화면업무Lv1별 하위 폴더
+│   ├── configs/                        # 환경설정, 메뉴 등 설정 파일
+│   ├── providers/                      # Provider 컴포넌트
+│   │   └── 화면업무Lv1/                  # 화면업무Lv1별 하위 폴더
+│   └── design/                         # 디자인 시스템, 스토리북 등
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+## 3. 네이밍 컨벤션
+
+### 3.1 기본 명명 규칙
+- **영문 3~6자 이내 단어 조합** (7자 이상은 3~5자 약어 사용) 단, 폴더 및 기본 생성 파일들은 제외
+- **컴포넌트/타입/클래스**: PascalCase (예: `DataSetTable`, `UserCard`)
+- **함수/변수/훅**: camelCase (예: `getUserList`, `useFetchData`)
+- **.tsx 파일명은 Pascal Case** (예: `UILnb.tsx`, `DataCtlgPage`)
+
+> **폴더/파일명 규칙은 @프로젝트 폴더 네이밍 규칙도 함께 참고**
+
+### 3.2 계층별 명명 규칙
+
+#### 컴포넌트 계층
+
+- **Atomic Design 원칙**  
+  - `src/components/UI/` 하위에 `atoms/`, `molecules/`, `organisms/`, `templates/` 폴더를 둡니다.
+
+- **organisms 폴더 구조**  
+  - `organisms/` 하위에 **역할별 폴더**를 생성합니다.  
+    예: `organisms/navigation/`, `organisms/content/`, `organisms/popup/` 등
+
+- **컴포넌트별 폴더 구조**  
+  - 역할별 폴더 하위에 **컴포넌트명 폴더**를 생성합니다.  
+    예: `organisms/navigation/UILnb/`
+
+- **컴포넌트 파일 구성**  
+  - 각 컴포넌트 폴더에는 아래와 같은 파일을 둡니다:
+    - `[컴포넌트명].tsx` : 컴포넌트 구현
+    - `types.ts` : type, props 등 타입을 type 형식으로만 선언 (interface 사용 지양)
+    - `index.ts` : 해당 컴포넌트의 export
+
+- **예시 디렉토리 구조**
+```
+src/components/UI/organisms/
+  └── navigation/
+      └── UILnb/
+          ├── UILnb.tsx
+          ├── types.ts
+          └── index.ts
+```
+
+- **컴포넌트 네이밍**
+  - 컴포넌트명은 PascalCase, `UI` 접두어 + 역할/명사 조합 (예: `UILnb`, `UIHeader`)
+  - props 명명은 `[컴포넌트명][명사조합]Props` (예: `UILnbProps`, `UILnbMenuPros`)
+  - type 명명은 `[컴포넌트명][명사조합]type`, (예: `UILnbMenuItemType`)
+
+#### 페이지 계층
+- **페이지 명**: `[명사조합]Page` (예: `HomePage`, `DataCatalogPage`)
+- **폴더 구조**: `pages/[화면업무Lv1]/[화면업무Lv2]/[명사조합]Page.tsx`
+- **라우트 설정**: `routes/` 하위에 화면업무Lv1 별 route config 파일
+
+#### 서비스 계층
+- **서비스 명**: `use[복합명사]` (예: `useData`, `userAuthSvc`)
+- **폴더 구조**: `services/[업무Lv1]/useData.tsx` (백엔드 업무 기준)
+- **서비스 파일**: 백엔드 컨트롤러와 1:1 매핑으로 작성
+  - 예: `services/agent/useAgent.ts`, `services/model/useModel.ts`
+- **함수명**: 백엔드 컨트롤러 메서드와 1:1 매핑
+  - `create[복합명사]` → `useCreate[복합명사]` (예: `createSamplse` → `useCreateSample`)
+  - `get[복합명사]s` → `use[복합명사]s` (예: `getSamples` → `useSamples`)
+  - `get[복합명사]ById` → `use[복합명사]ById` (예: `getSampleById` → `useSampleById`)
+  - `update[복합명사]` → `useUpdate[복합명사]` (예: `updateSample` → `useUpdateSample`)
+  - `delete[복합명사]` → `useDelete[복합명사]` (예: `deleteSample` → `useDeleteSample`)
+  - `[동사][복합명사]` → `use[동사][복합명사]` → (예: `authUserToken` → `useAuthUserToken` )
+
+#### 상태관리 계층
+- **store/context**: `[복합명사]Store`,  (예: `UserStore`, `MenuStore`)
+- **폴더 구조**: `stores/[업무Lv1]/`
+
+#### 유틸리티 계층
+- **유틸리티명**: 복합명사, camelCase (예: `date`, `strConv`)
+- **폴더 구조**: `utils/[업무Lv1]/[복합명사].ts`
+
+#### 설정/상수 계층
+- **설정파일**: `[기능].config.ts` (예: `menu.config.ts`)
+- **상수**: `CONSTANT_CASE` (예: `API_BASE_URL` )
+- **폴더 구조**: `configs/`, `constants/` (필요시)
+
+---
+
+> **참고:**  
+> - 폴더/파일명 규칙은 @프로젝트 폴더 네이밍 규칙도 함께 참고  
+> - 실제 예시 및 상세 규칙은 추후 별도 문서로 보완 가능

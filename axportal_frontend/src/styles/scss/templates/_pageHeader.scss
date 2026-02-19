@@ -1,0 +1,322 @@
+@charset "UTF-8";
+
+/* UIProjectBoxDropdown 커스텀 클래스 */
+
+/* 그룹 생성 전 상태 - 설정 버튼 숨김 */
+.project-dropdown--no-group {
+  .setting-button {
+    display: none;
+  }
+}
+
+/* 읽기 전용 - 설정 버튼 및 관리 기능 숨김 */
+.project-dropdown--readonly {
+  .setting-button,
+  .admin-actions {
+    display: none;
+  }
+}
+
+/* 참여/탈퇴 버튼만 표시 */
+.project-dropdown--join-only {
+  .project-create-btn {
+    display: none;
+  }
+}
+
+/* 그룹 관리자용 - 모든 관리 기능 표시 */
+.project-dropdown--admin {
+  .admin-actions {
+    display: block;
+  }
+}
+
+/* 비활성화 상태 - 모든 버튼 비활성화 */
+.project-dropdown--disabled {
+  button {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+/* ============================================ */
+/* UIProjectBoxDropdown 기본 스타일 */
+/* ============================================ */
+
+/* 드롭다운 컨테이너 */
+.project-dropdown {
+  position: absolute;
+  top: 54px;
+  left: 0;
+  width: 321px;
+  height: auto;
+  background-color: white;
+  border: 1px solid #dce2ed;
+  border-radius: 8px;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+
+  /* 최근 그룹 영역 */
+  .recent-group {
+    width: 100%;
+    height: auto;
+    background-color: #f3f6fb;
+    border-bottom: 1px solid #dce2ed;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  /* 최근 그룹 타이틀 영역 */
+  .recent-group-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+
+  /* 최근 그룹 텍스트 */
+  .recent-group-text {
+    flex: 1;
+    padding-right: 8px;
+    word-break: break-words;
+  }
+
+  /* 설정 버튼 */
+  .setting-button {
+    width: 41px;
+    height: 32px;
+    background-color: white;
+    border: 1px solid #dce2ed;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #242a34;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+  }
+
+  /* 멤버 수 영역 */
+  .member-count {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* 하단 참여/추가 영역 */
+  .join-section {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    border-top: 1px solid #dce2ed;
+  }
+
+  .join-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .join-button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    color: #373e4d;
+    line-height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* 그룹 생성 후 스크롤 케이스 - 참여 그룹 목록 표시 */
+  &--scroll {
+    .participate-groups {
+      display: block;
+      background-color: #f3f6fb;
+
+      .group-list {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+        padding: 16px;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .group-item {
+        padding-left: 16px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &--selected {
+          background-color: #eff5ff;
+          border: 1px solid #e7edf6;
+        }
+      }
+
+      .group-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-left: 16px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+/* 참여 그룹 영역 기본 표시 */
+.participate-groups {
+  display: block;
+}
+
+/* 15자 이상 텍스트 말줄임 처리 클래스 */
+.text-truncate-15 {
+  max-width: 195px; /* 대략 15자 기준 너비 (13px * 15) */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================ */
+/* UIProjectBox 기본 스타일 */
+/* ============================================ */
+
+/* 프로젝트 박스 컨테이너 */
+.project-box {
+  padding-right: 32px;
+  position: relative;
+
+  /* 프로젝트 박스 내부 */
+  &-inner {
+    width: 321px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border: 1px solid #dce2ed;
+    border-radius: 8px;
+    height: 48px;
+    cursor: pointer;
+    background-color: white;
+  }
+
+  /* 비활성화 상태 */
+  &--disabled {
+    .project-box-inner {
+      cursor: not-allowed;
+      pointer-events: none;
+      background-color: #f3f6fb;
+
+      .btn-compact-outlined {
+        border-color: #dce2ed;
+        background-color: #dce2ed;
+      }
+    }
+  }
+
+  &-label {
+    display: inline-block;
+    padding: 0 6px;
+    height: 24px;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 400;
+    border-radius: 4px;
+    color: #121315;
+    cursor: pointer;
+    border: 1px solid #dce2ed;
+    background-color: #f3f6fb;
+  }
+}
+
+/* 프로젝트 박스 좌측 영역 */
+.project-box-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-group {
+  padding: 16px 0;
+
+  &-head {
+    padding: 0 16px;
+  }
+
+  &-wrap {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .project-group-list {
+    .flex-btn-group {
+      display: flex;
+      column-gap: 4px;
+      align-items: center;
+    }
+
+    > li {
+      display: flex;
+      padding: 10px 16px;
+      &:hover {
+        background-color: #eff5ff;
+        color: #576072;
+      }
+
+      > button {
+        flex: 1;
+        cursor: pointer;
+        text-align: left;
+        margin: 0;
+        color: #373e4d;
+        &.active {
+          color: #005df9;
+        }
+      }
+    }
+  }
+}
+
+.ide-modal {
+  width: 248px;
+  top: 62px;
+  right: 33px;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d1d5db;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+  &-content {
+    padding: 48px 24px 16px;
+  }
+  .btn-close {
+    position: absolute;
+    top: 0.875rem;
+    right: 1rem;
+    padding: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}

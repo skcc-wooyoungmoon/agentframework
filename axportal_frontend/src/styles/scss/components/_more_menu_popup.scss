@@ -1,0 +1,58 @@
+@charset "UTF-8";
+.more-menu-popup {
+  position: absolute;
+  top: 0;
+  // left: 0;
+  padding: 6px;
+  width: 160px;
+  height: auto;
+  background-color: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--gray-300);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  // transform: translate(-110%, 0);
+  > button {
+    display: block;
+    padding: 8px 16px;
+    width: 100%;
+    height: 36px;
+    border-radius: 8px;
+    text-align: left;
+    background-color: white;
+    &:hover {
+      background-color: #eff5ff;
+      color: #005df9;
+    }
+  }
+}
+
+
+// 그리드 > 카드타입 버튼 케이스 별도 class
+.more-menu-card {
+  position: absolute;
+  top: 58px;
+  right: 24px;
+  padding: 6px;
+  width: 160px;
+  height: auto;
+  background-color: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--gray-300);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  > button {
+    display: block;
+    padding: 8px 16px;
+    width: 100%;
+    height: 36px;
+    border-radius: 8px;
+    text-align: left;
+    background-color: white;
+    &:hover {
+      background-color: #eff5ff;
+      color: #005df9;
+    }
+  }
+}
+

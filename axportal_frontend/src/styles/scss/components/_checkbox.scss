@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+.chk {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  input[type='checkbox'] {
+    flex-shrink: 0;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(/public/assets/images/system/ico-system-24-check-unselected.svg);
+    }
+
+    &:checked::before {
+      background-image: url(/public/assets/images/system/ico-system-24-check-selected.svg);
+    }
+
+    &:disabled::before {
+      background-image: url(/public/assets/images/system/ico-system-24-check-disabled.svg);
+    }
+
+    &:checked:disabled::before {
+      background-image: url(/public/assets/images/system/ico-system-24-check-disabled-selected.svg);
+    }
+
+    /* with label */
+    & + span {
+      display: inline-block;
+      color: var(--gray-600);
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: var(--font-weight-regular);
+    }
+  }
+
+  &.circle {
+    input[type='checkbox'] {
+      &::before {
+        background-image: url(/public/assets/images/system/ico-system-24-circle-unchecked.svg);
+      }
+
+      &:checked::before {
+        background-image: url(/public/assets/images/system/ico-system-24-complete.svg);
+      }
+
+      &:disabled::before {
+        background-image: url(/public/assets/images/system/ico-system-24-circle-disabled.svg);
+      }
+
+      &:checked:disabled::before {
+        background-image: url(/public/assets/images/system/ico-system-24-circle-disabled-selected.svg);
+      }
+    }
+  }
+  &.box {
+    input[type='checkbox'] {
+      &::before {
+        background-image: url(/public/assets/images/system/ico-system-24-box-unselected.svg);
+      }
+
+      &:checked::before {
+        background-image: url(/public/assets/images/system/ico-system-24-box-selected.svg);
+      }
+
+      &:disabled::before {
+        background-image: url(/public/assets/images/system/ico-system-24-box-disabled.svg);
+      }
+
+      &:checked:disabled::before {
+        background-image: url(/public/assets/images/system/ico-system-24-box-disabled-selected.svg);
+      }
+    }
+    &.sm {
+      input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

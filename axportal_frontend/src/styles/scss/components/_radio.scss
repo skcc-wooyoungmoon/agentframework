@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+.rdo {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  input[type='radio'] {
+    flex-shrink: 0;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url(/public/assets/images/system/ico-system-24-radio-unselected.svg);
+    }
+
+    &:checked::before {
+      background-image: url(/public/assets/images/system/ico-system-24-radio-selected.svg);
+    }
+
+    &:disabled::before {
+      background-image: url(/public/assets/images/system/ico-system-24-radio-disabled.svg);
+    }
+
+    &:checked:disabled::before {
+      background-image: url(/public/assets/images/system/ico-system-24-radio-disabled-selected.svg);
+    }
+
+    /* with label */
+    & + span {
+      display: inline-block;
+      color: var(--gray-600);
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: var(--font-weight-regular);
+    }
+  }
+}
+
+// 세그먼트 그룹
+.segment-group {
+  display: flex;
+  flex-wrap: wrap;
+
+  &.gap-rg {
+    gap: 24px;
+  }
+}
+
+.select-card {
+  label {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  /* input 숨김 */
+  label > input[type='radio'],
+  label > input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &_child {
+    &_content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      background-color: var(--white, #fff);
+      transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    &_target {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      overflow: hidden;
+
+      > * {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+  }
+
+  /* 공통: 체크 상태 아이콘 */
+  &_check-A,
+  &_check-B {
+    label > input[type='radio']:checked + .select-card_child_content,
+    label > input[type='checkbox']:checked + .select-card_child_content {
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 24px;
+        height: 24px;
+        background: no-repeat center/contain url(/public/assets/images/system/ico-system-24-complete.svg);
+      }
+    }
+  }
+
+  /* A타입 */
+  &_check-A {
+    .select-card_child_content {
+      border: 2px solid var(--gray-200, #e7edf6);
+      border-radius: 20px;
+    }
+
+    label > input[type='radio']:checked + .select-card_child_content,
+    label > input[type='checkbox']:checked + .select-card_child_content {
+      border-color: var(--blue-800);
+      &::after {
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+  }
+
+  /* B타입 */
+  &_check-B {
+    .select-card_child_content {
+      border: 1px solid var(--gray-200, #e7edf6);
+      border-radius: 16px;
+    }
+
+    label > input[type='radio']:checked + .select-card_child_content,
+    label > input[type='checkbox']:checked + .select-card_child_content {
+      border-color: var(--blue-800);
+      &::after {
+        bottom: 12px;
+        right: 12px;
+      }
+    }
+  }
+
+  &_size {
+    &_small {
+      width: 180px;
+      height: 120px;
+    }
+    &_medium {
+      width: 388px;
+      height: 180px;
+    }
+  }
+}
+
+// radio + label + (줄바꿈) text
+.group-radio {
+  .rdo {
+    input[type='radio'] {
+      & + span {
+        font-weight: 600;
+        color: #242a34;
+      }
+    }
+  }
+  &-children {
+    padding-left: 32px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 2px;
+    color: #576072;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

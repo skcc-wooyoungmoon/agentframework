@@ -1,0 +1,1531 @@
+@charset "UTF-8";
+
+[class^='ic'] {
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* 성능 최적화 속성 */
+  contain: layout style paint;
+  image-rendering: crisp-edges;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^='ic'][class*='-8'] {
+  width: 8px;
+  height: 8px;
+}
+[class^='ic'][class*='-10'] {
+  width: 10px;
+  height: 10px;
+}
+[class^='ic'][class*='-12'] {
+  width: 12px;
+  height: 12px;
+}
+[class^='ic'][class*='-14'] {
+  width: 14px;
+  height: 14px;
+}
+[class^='ic'][class*='-16'] {
+  width: 16px;
+  height: 16px;
+}
+[class^='ic'][class*='-20'] {
+  width: 20px;
+  height: 20px;
+}
+[class^='ic'][class*='-24'] {
+  width: 24px;
+  height: 24px;
+}
+[class^='ic'][class*='-32'] {
+  width: 32px;
+  height: 32px;
+}
+[class^='ic'][class*='-40'] {
+  width: 40px;
+  height: 40px;
+}
+[class^='ic'][class*='-48'] {
+  width: 48px;
+  height: 48px;
+}
+[class^='ic'][class*='-56'] {
+  width: 56px;
+  height: 56px;
+}
+[class^='ic'][class*='-72'] {
+  width: 72px;
+  height: 72px;
+}
+[class^='ic'][class*='-80'] {
+  width: 80px;
+  height: 80px;
+}
+[class^='ic'][class*='-180'] {
+  width: 180px;
+  height: 180px;
+}
+
+// icon - width/height important
+.ipt-12 {
+  width: 12px !important;
+  height: 12px !important;
+}
+.ipt-16 {
+  width: 16px !important;
+  height: 16px !important;
+}
+.ipt-18 {
+  width: 18px !important;
+  height: 18px !important;
+}
+.ipt-20 {
+  width: 20px !important;
+  height: 20px !important;
+}
+.ipt-22 {
+  width: 22px !important;
+  height: 22px !important;
+}
+.ipt-24 {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.ic {
+  &-system {
+    &-required {
+      width: 4px;
+      height: 4px;
+      background-image: url('/public/assets/images/system/ico-system-required.svg');
+
+      position: relative;
+      top: 2px;
+      margin-left: 4px;
+      vertical-align: top;
+    }
+    &-alarm {
+      width: 6px;
+      height: 6px;
+      background-image: url('/public/assets/images/system/ico-system-16-alarm.svg');
+
+      position: relative;
+      top: 2px;
+      margin-left: 4px;
+      vertical-align: top;
+    }
+    &-node-connector {
+      width: 27px;
+      height: 26px;
+      background-image: url('/public/assets/images/system/ico-system-node-connector.svg');
+    }
+  }
+
+  &-system-8 {
+    &-dot-1 {
+      background-image: url('/public/assets/images/system/ico-system-8-dot-1.svg');
+    }
+    &-dot-2 {
+      background-image: url('/public/assets/images/system/ico-system-8-dot-2.svg');
+    }
+    &-dot-3 {
+      background-image: url('/public/assets/images/system/ico-system-8-dot-3.svg');
+    }
+    &-dot-4 {
+      background-image: url('/public/assets/images/system/ico-system-8-dot-4.svg');
+    }
+  }
+
+  &-system-10 {
+    &-dropdown {
+      height: 20px !important;
+      background-image: url('/public/assets/images/system/ico-system-10-dropdown.svg');
+    }
+  }
+  &-system-12 {
+    &-area {
+      background-image: url('/public/assets/images/system/ico-system-16-area.svg');
+    }
+    &-arrow-down {
+      background-image: url('/public/assets/images/system/ico-system-12-arrow-down.svg');
+    }
+    &-arrow-expansion {
+      background-image: url('/public/assets/images/system/ico-system-12-arrow-expansion.svg');
+    }
+    &-arrow-left {
+      background-image: url('/public/assets/images/system/ico-system-12-arrow-left.svg');
+    }
+    &-arrow-reduction {
+      background-image: url('/public/assets/images/system/ico-system-12-arrow-reduction.svg');
+    }
+    &-arrow-right-black {
+      background-image: url('/public/assets/images/system/ico-system-12-arrow-right-black.svg');
+    }
+    &-arrow-right-gray {
+      background-image: url('/public/assets/images/system/ico-system-12-arrow-right-gray.svg');
+    }
+    &-arrow-right-blue {
+      background-image: url('/public/assets/images/system/ic-system-12-arrow-right-blue.svg');
+    }
+    &-arrow-up {
+      background-image: url('/public/assets/images/system/ico-system-12-arrow-up.svg');
+    }
+    &-calendar {
+      background-image: url('/public/assets/images/system/ico-system-12-calendar.svg');
+    }
+    &-close {
+      background-image: url('/public/assets/images/system/ico-system-12-close.svg');
+    }
+    &-download {
+      background-image: url('/public/assets/images/system/ico-system-12-download.svg');
+    }
+    &-minus {
+      background-image: url('/public/assets/images/system/ico-system-12-minus.svg');
+    }
+    &-plus-blue {
+      background-image: url('/public/assets/images/system/ico-system-12-plus-blue.svg');
+    }
+    &-plus {
+      background-image: url('/public/assets/images/system/ico-system-12-plus.svg');
+    }
+    &-search {
+      background-image: url('/public/assets/images/system/ico-system-12-search.svg');
+    }
+    &-share {
+      background-image: url('/public/assets/images/system/ico-system-12-share.svg');
+    }
+  }
+
+  &-system-14 {
+    &-badge-complete {
+      background-image: url('/public/assets/images/system/ico-system-14-badge-complete.svg');
+    }
+    &-badge-ongoing {
+      background-image: url('/public/assets/images/system/ico-system-14-badge-ongoing.svg');
+    }
+    &-badge-stop {
+      background-image: url('/public/assets/images/system/ico-system-14-badge-stop.svg');
+    }
+    &-badge-hipen {
+      background-image: url('/public/assets/images/grid/ico-gray-hipen.svg');
+    }
+    &-badge-check {
+      background-image: url('/public/assets/images/grid/ico-purple-check.svg');
+    }
+  }
+
+  &-system-16 {
+    &-link {
+      background-image: url('/public/assets/images/system/ico-system-16-link.svg');
+    }
+    &-align {
+      background-image: url('/public/assets/images/system/ico-system-16-align.svg');
+    }
+    &-area {
+      background-image: url('/public/assets/images/system/ico-system-16-area.svg');
+    }
+    &-arrow-down-blue {
+      background-image: url('/public/assets/images/system/ico-system-16-arrow-down-blue.svg');
+    }
+    &-arrow-down-gray {
+      background-image: url('/public/assets/images/system/ico-system-16-arrow-down-gray.svg');
+    }
+    &-arrow-left {
+      background-image: url('/public/assets/images/system/ico-system-16-arrow-left.svg');
+    }
+    &-arrow-right {
+      background-image: url('/public/assets/images/system/ico-system-16-arrow-right.svg');
+    }
+    &-arrow-up-blue {
+      background-image: url('/public/assets/images/system/ico-system-16-arrow-up-blue.svg');
+    }
+    &-arrow-up-gray {
+      background-image: url('/public/assets/images/system/ico-system-16-arrow-up-gray.svg');
+    }
+    &-btn-minus {
+      background-image: url('/public/assets/images/system/ico-system-16-btn-minus.svg');
+    }
+    &-btn {
+      background-image: url('/public/assets/images/system/ico-system-16-btn.svg');
+    }
+    &-close-black {
+      background-image: url('/public/assets/images/system/ico-system-16-close-black.svg');
+    }
+    &-close {
+      background-image: url('/public/assets/images/system/ico-system-16-close.svg');
+    }
+    &-complete {
+      background-image: url('/public/assets/images/system/ico-system-16-complete.svg');
+    }
+    &-dot-1 {
+      background-image: url('/public/assets/images/system/ico-system-16-dot-1.svg');
+    }
+    &-dot-2 {
+      background-image: url('/public/assets/images/system/ico-system-16-dot-2.svg');
+    }
+    &-dot-3 {
+      background-image: url('/public/assets/images/system/ico-system-16-dot-3.svg');
+    }
+    &-dot-4 {
+      background-image: url('/public/assets/images/system/ico-system-16-dot-4.svg');
+    }
+    &-dot-5 {
+      background-image: url('/public/assets/images/system/ico-system-16-dot-5.svg');
+    }
+    &-down-black {
+      background-image: url('/public/assets/images/system/ico-system-16-down-black.svg');
+    }
+    &-down-gray {
+      background-image: url('/public/assets/images/system/ico-system-16-down-gray.svg');
+    }
+    &-download {
+      background-image: url('/public/assets/images/system/ico-system-16-download.svg');
+    }
+    &-error {
+      background-image: url('/public/assets/images/system/ico-system-16-error.svg');
+    }
+    &-export {
+      background-image: url('/public/assets/images/system/ico-system-16-export.svg');
+    }
+    &-file-Delete {
+      background-image: url('/public/assets/images/system/ico-system-16-file-Delete.svg');
+    }
+    &-file-save {
+      background-image: url('/public/assets/images/system/ico-system-16-file-save.svg');
+    }
+    &-grid-sort {
+      background-image: url('/public/assets/images/system/ico-system-16-grid-sort.svg');
+    }
+    &-info-gray {
+      background-image: url('/public/assets/images/system/ico-system-16-info-gray.svg');
+    }
+    &-info-red {
+      background-image: url('/public/assets/images/system/ico-system-16-info-red.svg');
+    }
+    &-info {
+      background-image: url('/public/assets/images/system/ico-system-16-info.svg');
+    }
+    &-plus-gray {
+      background-image: url('/public/assets/images/system/ico-system-16-plus-gray.svg');
+    }
+    &-plus {
+      background-image: url('/public/assets/images/system/ico-system-16-plus.svg');
+    }
+    &-select {
+      background-image: url('/public/assets/images/system/ico-system-16-select.svg');
+    }
+    &-sort {
+      background-image: url('/public/assets/images/system/ico-system-16-sort.svg');
+    }
+    &-tooltip {
+      background-image: url('/public/assets/images/system/ico-system-16-tooltip.svg');
+    }
+    &-up-black {
+      background-image: url('/public/assets/images/system/ico-system-16-up-black.svg');
+    }
+    &-up-gray {
+      background-image: url('/public/assets/images/system/ico-system-16-up-gray.svg');
+    }
+    &-user {
+      background-image: url('/public/assets/images/system/ic-system-16-user.svg');
+    }
+    &-public {
+      background-image: url('/public/assets/images/system/ic-system-16-public.svg');
+    }
+  }
+  &-system-20 {
+    &-area {
+      background-image: url('/public/assets/images/system/ico-system-20-area.svg');
+    }
+    &-close {
+      background-image: url('/public/assets/images/system/ico-system-20-close.svg');
+    }
+    &-complete {
+      background-image: url('/public/assets/images/system/ico-system-20-complete.svg');
+    }
+    &-copy-black {
+      background-image: url('/public/assets/images/system/ico-system-20-copy-black.svg');
+    }
+    &-copy-gray {
+      background-image: url('/public/assets/images/system/ico-system-20-copy-gray.svg');
+    }
+    &-download-black {
+      background-image: url('/public/assets/images/system/ico-system-20-download-black.svg');
+    }
+    &-download-blue {
+      background-image: url('/public/assets/images/system/ico-system-20-download-blue.svg');
+    }
+    &-download-gray {
+      background-image: url('/public/assets/images/system/ico-system-20-download-gray.svg');
+    }
+    &-error {
+      background-image: url('/public/assets/images/system/ico-system-20-error.svg');
+    }
+    &-gnb-arrow-left-black {
+      background-image: url('/public/assets/images/system/ico-system-20-gnb-arrow-left-black.svg');
+    }
+    &-gnb-arrow-left-gray {
+      background-image: url('/public/assets/images/system/ico-system-20-gnb-arrow-left-gray.svg');
+    }
+    &-gnb-arrow-right-black {
+      background-image: url('/public/assets/images/system/ico-system-20-gnb-arrow-right-black.svg');
+    }
+    &-gnb-arrow-right-gray {
+      background-image: url('/public/assets/images/system/ico-system-20-gnb-arrow-right-gray.svg');
+    }
+    &-graph {
+      background-image: url('/public/assets/images/system/ico-system-20-graph.svg');
+    }
+    &-headset {
+      background-image: url('/public/assets/images/system/ico-system-20-headset.svg');
+    }
+    &-info {
+      background-image: url('/public/assets/images/system/ico-system-20-info.svg');
+    }
+    &-list {
+      background-image: url('/public/assets/images/system/ico-system-20-list.svg');
+    }
+    &-map {
+      background-image: url('/public/assets/images/system/ico-system-20-map.svg');
+    }
+    &-play {
+      background-image: url('/public/assets/images/system/ico-system-20-play.svg');
+    }
+    &-refresh {
+      background-image: url('/public/assets/images/system/ico-system-20-refresh.svg');
+    }
+    &-reload {
+      background-image: url('/public/assets/images/system/ico-system-20-reload.svg');
+    }
+    &-stop {
+      background-image: url('/public/assets/images/system/ico-system-20-stop.svg');
+    }
+    &-builder {
+      background-image: url('/public/assets/images/system/ico-system-20-builder.svg');
+    }
+    &-user {
+      background-image: url('/public/assets/images/system/ic-system-20-user.svg');
+    }
+  }
+
+  &-system-24 {
+    &-prompt {
+      background-image: url('/public/assets/images/system/ico-system-24-prompt.svg');
+    }
+    &-add {
+      background-image: url('/public/assets/images/system/ico-system-24-add.svg');
+    }
+    &-download {
+      background-image: url('/public/assets/images/system/ico-system-24-download.svg');
+    }
+    &-download-black {
+      background-image: url('/public/assets/images/system/ico-system-24-download-black.svg');
+    }
+    &-alarm {
+      background-image: url('/public/assets/images/system/ico-system-24-alarm.svg');
+    }
+    &-area {
+      background-image: url('/public/assets/images/system/ico-system-24-area.svg');
+    }
+    &-arrow-right-double {
+      background-image: url('/public/assets/images/system/ico-system-24-arow-right-double.svg');
+    }
+    &-arrow-left {
+      background-image: url('/public/assets/images/system/ico-system-24-arrow-left.svg');
+    }
+    &-arrow-right-1 {
+      background-image: url('/public/assets/images/system/ico-system-24-arrow-right-1.svg');
+      &.rotate-icon {
+        transform: rotate(-180deg);
+      }
+    }
+    &-box-disabled-selected {
+      background-image: url('/public/assets/images/system/ico-system-24-box-disabled-selected.svg');
+    }
+    &-box-disabled {
+      background-image: url('/public/assets/images/system/ico-system-24-box-disabled.svg');
+    }
+    &-box-selected {
+      background-image: url('/public/assets/images/system/ico-system-24-box-selected.svg');
+    }
+    &-box-unselected {
+      background-image: url('/public/assets/images/system/ico-system-24-box-unselected.svg');
+    }
+    &-calender {
+      background-image: url('/public/assets/images/system/ico-system-24-calender.svg');
+    }
+    &-call {
+      background-image: url('/public/assets/images/system/ico-system-24-call.svg');
+    }
+    &-camera {
+      background-image: url('/public/assets/images/system/ico-system-24-camera.svg');
+    }
+    &-check-disabled-selected {
+      background-image: url('/public/assets/images/system/ico-system-24-check-disabled-selected.svg');
+    }
+    &-check-disabled {
+      background-image: url('/public/assets/images/system/ico-system-24-check-disabled.svg');
+    }
+    &-check-selected {
+      background-image: url('/public/assets/images/system/ico-system-24-check-selected.svg');
+    }
+    &-check-unselected {
+      background-image: url('/public/assets/images/system/ico-system-24-check-unselected.svg');
+    }
+    &-circle-disabled-selected {
+      background-image: url('/public/assets/images/system/ico-system-24-circle-disabled-selected.svg');
+    }
+    &-circle-disabled {
+      background-image: url('/public/assets/images/system/ico-system-24-circle-disabled.svg');
+    }
+    &-circle-unchecked {
+      background-image: url('/public/assets/images/system/ico-system-24-circle-unchecked.svg');
+    }
+    &-clear {
+      background-image: url('/public/assets/images/system/ico-system-24-clear.svg');
+    }
+    &-complete {
+      background-image: url('/public/assets/images/system/ico-system-24-complete.svg');
+    }
+    &-data {
+      background-image: url('/public/assets/images/system/ico-system-24-data.svg');
+    }
+    &-delete {
+      background-image: url('/public/assets/images/system/ico-system-24-delete.svg');
+    }
+    &-down {
+      background-image: url('/public/assets/images/system/ico-system-24-down.svg');
+    }
+    &-error {
+      background-image: url('/public/assets/images/system/ico-system-24-error.svg');
+    }
+    &-hide {
+      background-image: url('/public/assets/images/system/ico-system-24-hide.svg');
+    }
+    &-loading {
+      background-image: url('/public/assets/images/system/ico-system-24-loading.svg');
+    }
+    &-menu {
+      background-image: url('/public/assets/images/system/ico-system-24-menu.svg');
+    }
+    &-more-2 {
+      background-image: url('/public/assets/images/system/ico-system-24-more-2.svg');
+    }
+    &-more {
+      background-image: url('/public/assets/images/system/ico-system-24-more.svg');
+    }
+    &-outline-add {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-add.svg');
+    }
+    &-outline-black-alarm {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-black-alarm.svg');
+    }
+    &-outline-blue-add {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-add.svg');
+    }
+    &-outline-black-alarm {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-black-alarm.svg');
+    }
+    &-outline-blue-add {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-add.svg');
+    }
+    &-outline-blue-alarm {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-alarm.svg');
+    }
+    &-outline-blue-check {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-check.svg');
+    }
+    &-outline-blue-complete {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-complete.svg');
+    }
+    &-outline-blue-edit {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-edit.svg');
+    }
+    &-outline-blue-export {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-export.svg');
+    }
+    &-outline-blue-minus {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-minus.svg');
+    }
+    &-outline-blue-setting {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-setting.svg');
+    }
+    &-outline-check {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-check.svg');
+    }
+    &-outline-download {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-download.svg');
+    }
+    &-outline-duplicate {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-duplicate.svg');
+    }
+    &-outline-edit {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-edit.svg');
+    }
+    &-outline-export {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-export.svg');
+    }
+    &-outline-folder {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-folder.svg');
+    }
+    &-outline-gray-add {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-add.svg');
+    }
+    &-outline-gray-alarm {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-alarm.svg');
+    }
+    &-outline-gray-calender {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-calender.svg');
+    }
+    &-outline-gray-duplicate {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-duplicate.svg');
+    }
+    &-outline-gray-left-box-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-left-box-double.svg');
+    }
+    &-outline-gray-left-box {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-left-box.svg');
+    }
+    &-outline-gray-left-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-left-double.svg');
+    }
+    &-outline-gray-loading {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-loading.svg');
+    }
+    &-outline-gray-log {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-log.svg');
+    }
+    &-outline-gray-minus {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-minus.svg');
+    }
+    &-outline-gray-right-box-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-right-box-double.svg');
+    }
+    &-outline-gray-right-box {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-right-box.svg');
+    }
+    &-outline-gray-right-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-right-double.svg');
+    }
+    &-outline-gray-search {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-search.svg');
+    }
+    &-outline-gray-small-down {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-small-down.svg');
+    }
+    &-outline-gray-small-right {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-small-right.svg');
+    }
+    &-outline-gray-trash {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-trash.svg');
+    }
+    &-outline-gray-view-off {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-view-off.svg');
+    }
+    &-outline-gray-view {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-view.svg');
+    }
+    &-outline-headset {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-headset.svg');
+    }
+    &-outline-heart {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-heart.svg');
+    }
+    &-outline-hourglass {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-hourglass.svg');
+    }
+    &-outline-large-add {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-large-add.svg');
+    }
+    &-outline-large-close {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-large-close.svg');
+    }
+    &-outline-large-down {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-large-down.svg');
+    }
+    &-outline-large-left {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-large-left.svg');
+    }
+    &-outline-large-right {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-large-right.svg');
+    }
+    &-outline-large-share {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-large-share.svg');
+    }
+    &-outline-large-up {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-large-up.svg');
+    }
+    &-outline-left-box-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-left-box-double.svg');
+    }
+    &-outline-left-box {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-left-box.svg');
+    }
+    &-outline-left-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-left-double.svg');
+      &.rotate-icon {
+        transform: rotate(-180deg);
+      }
+    }
+    &-outline-list {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-list.svg');
+    }
+    &-outline-log {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-log.svg');
+    }
+    &-outline-login-pw {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-login-pw.svg');
+    }
+    &-outline-login {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-login.svg');
+    }
+    &-outline-map {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-map.svg');
+    }
+    &-outline-medium-close {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-medium-close.svg');
+    }
+    &-outline-medium-down {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-medium-down.svg');
+    }
+    &-outline-medium-refresh {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-medium-refresh.svg');
+    }
+    &-outline-medium-up {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-medium-up.svg');
+    }
+    &-outline-merge {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-merge.svg');
+    }
+    &-outline-minus {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-minus.svg');
+    }
+    &-outline-notice {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-notice.svg');
+    }
+    &-outline-overflow {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-overflow.svg');
+    }
+    &-outline-pin {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-pin.svg');
+    }
+    &-outline-right-box-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-right-box-double.svg');
+    }
+    &-outline-right-box {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-right-box.svg');
+    }
+    &-outline-right-double {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-right-double.svg');
+    }
+    &-outline-scroll-bottom {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-scroll-bottom.svg');
+    }
+    &-outline-scroll-top {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-scroll-top.svg');
+    }
+    &-outline-search {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-search.svg');
+    }
+    &-outline-seperate {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-seperate.svg');
+    }
+    &-outline-setting {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-setting.svg');
+    }
+    &-outline-shortcut {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-shortcut.svg');
+    }
+    &-outline-small-close {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-close.svg');
+    }
+    &-outline-small-down {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-down.svg');
+    }
+    &-outline-small-down {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-down.svg');
+    }
+    &-outline-small-left {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-left.svg');
+    }
+    &-outline-small-refresh {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-refresh.svg');
+    }
+    &-outline-small-right {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-right.svg');
+    }
+    &-outline-small-share {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-share.svg');
+    }
+    &-outline-small-up {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-small-up.svg');
+    }
+    &-outline-sort {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-sort.svg');
+    }
+    &-outline-star {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-star.svg');
+    }
+    &-outline-time {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-time.svg');
+    }
+    &-outline-transfer {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-transfer.svg');
+    }
+    &-outline-trash {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-trash.svg');
+    }
+    &-outline-view-off {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-view-off.svg');
+    }
+    &-outline-view {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-view.svg');
+    }
+    &-outline-white-close {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-white-close.svg');
+    }
+    &-outline-write {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-write.svg');
+    }
+    &-radio-disabled-selected {
+      background-image: url('/public/assets/images/system/ico-system-24-radio-disabled-selected.svg');
+    }
+    &-radio-disabled {
+      background-image: url('/public/assets/images/system/ico-system-24-radio-disabled.svg');
+    }
+    &-radio-selected {
+      background-image: url('/public/assets/images/system/ico-system-24-radio-selected.svg');
+    }
+    &-radio-unselected {
+      background-image: url('/public/assets/images/system/ico-system-24-radio-unselected.svg');
+    }
+    &-radio {
+      background-image: url('/public/assets/images/system/ico-system-24-radio.svg');
+    }
+    &-see {
+      background-image: url('/public/assets/images/system/ico-system-24-see.svg');
+    }
+    &-toggle-area-card-on {
+      background-image: url('/public/assets/images/system/ico-system-24-toggle-area-card-on.svg');
+    }
+    &-toggle-area-card {
+      background-image: url('/public/assets/images/system/ico-system-24-toggle-area-card.svg');
+    }
+    &-toggle-area-list-on {
+      background-image: url('/public/assets/images/system/ico-system-24-toggle-area-list-on.svg');
+    }
+    &-toggle-area-list {
+      background-image: url('/public/assets/images/system/ico-system-24-toggle-area-list.svg');
+    }
+    &-up {
+      background-image: url('/public/assets/images/system/ico-system-24-up.svg');
+    }
+    &-AppBar-close {
+      background-image: url('/public/assets/images/system/ico-system-24-AppBar-close.svg');
+    }
+    &-header-history-arr-right {
+      background-image: url('/public/assets/images/system/ico-system-24-header-history-arr-right.svg');
+    }
+    &-move {
+      background-image: url('/public/assets/images/system/ico-system-24-move.svg');
+    }
+
+    &-google {
+      background-image: url('/public/assets/images/logo/ico-logo-24-google.svg');
+    }
+    &-link {
+      background-image: url('/public/assets/images/system/ic-system-24-link.svg');
+    }
+    &-page {
+      background-image: url('/public/assets/images/system/ic-system-24-page.svg');
+    }
+    &-project {
+      background-image: url('/public/assets/images/system/ico-system-24-project.svg');
+    }
+  }
+
+  &-model-24 {
+    &-hugging-face {
+      background-image: url('/public/assets/images/model/ico-model-24-hugging-face.svg');
+    }
+
+    &-ax {
+      background-image: url('/public/assets/images/model/ico-logo-24-ax.svg');
+    }
+    &-cohere {
+      background-image: url('/public/assets/images/model/ico-logo-24-cohere.svg');
+    }
+    &-mistral {
+      background-image: url('/public/assets/images/model/ico-logo-24-google-mistral.svg');
+    }
+    &-lama {
+      background-image: url('/public/assets/images/model/ico-logo-24-lama.svg');
+    }
+    &-meta {
+      background-image: url('/public/assets/images/model/ico-logo-24-meta.svg');
+    }
+    &-openai {
+      background-image: url('/public/assets/images/model/ico-logo-24-openai.svg');
+    }
+    &-google {
+      background-image: url('/public/assets/images/logo/ico-logo-24-google.svg');
+    }
+    &-globalai {
+      background-image: url('/public/assets/images/model/ico-logo-24-globalai.svg');
+    }
+    &-microsoft {
+      background-image: url('/public/assets/images/model/ico-logo-24-microsoft.svg');
+    }
+    &-etc {
+      background-image: url('/public/assets/images/model/ico-logo-24-etc.svg');
+    }
+    &-anthropic {
+      background-image: url('/public/assets/images/model/ico-logo-24-anthropic.svg');
+    }
+  }
+
+  &-system-32 {
+    &-AppBar-close {
+      background-image: url('/public/assets/images/system/ico-system-32-AppBar-close.svg');
+    }
+    &-send {
+      background-image: url('/public/assets/images/system/ico-system-32-send.svg');
+    }
+    &-trash {
+      background-image: url('/public/assets/images/system/ico-system-32-trash.svg');
+    }
+    &-outline-blue-alarm {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-blue-alarm.svg');
+    }
+    &-outline-gray-alarm {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-alarm.svg');
+    }
+    &-outline-gray-log {
+      background-image: url('/public/assets/images/system/ico-system-24-outline-gray-log.svg');
+    }
+    &-arrow-down-gray {
+      background-image: url('/public/assets/images/system/ic-system-32-arrow-down-gray.svg');
+      &-fill {
+        background-image: url('/public/assets/images/system/ic-system-32-arrow-down-gray-fill.svg');
+      }
+    }
+    &-arrow-up-gray {
+      background-image: url('/public/assets/images/system/ic-system-32-arrow-up-gray.svg');
+      &-fill {
+        background-image: url('/public/assets/images/system/ic-system-32-arrow-up-gray-fill.svg');
+      }
+    }
+  }
+
+  &-system-48 {
+    &-delete {
+      background-image: url('/public/assets/images/system/ico-system-48-delete.svg');
+    }
+    &-warning {
+      background-image: url('/public/assets/images/system/ico-system-48-warning.svg');
+    }
+    &-swingchat {
+      background-image: url('/public/assets/images/logo/ico-logo-48-swing.svg');
+    }
+    &-molimate {
+      background-image: url('/public/assets/images/logo/ico-logo-48-molimate.svg');
+    }
+    &-chat {
+      background-image: url('/public/assets/images/common/ico-agent-48-chat.svg');
+    }
+    &-ai {
+      background-image: url('/public/assets/images/system/ico-system-48-ai.svg');
+    }
+    &-msg {
+      background-image: url('/public/assets/images/system/ico-system-48-msg.svg');
+    }
+    &-builder {
+      background-image: url('/public/assets/images/system/ico-system-48-builder.svg');
+    }
+    &-key {
+      background-image: url('/public/assets/images/system/ico-system-48-key.svg');
+    }
+  }
+
+  &-system-56 {
+    &-check {
+      background-image: url('/public/assets/images/system/ico-system-56-check.svg');
+    }
+    &-feedback {
+      background-image: url('/public/assets/images/system/ico-system-56-feedback.svg');
+    }
+  }
+
+  &-system-72 {
+    &-feedback {
+      background-image: url('/public/assets/images/system/ico-system-72-feedback.svg');
+      &-check {
+        background-image: url('/public/assets/images/system/ico-system-72-feedback-check.svg');
+        &-blue {
+          background-image: url('/public/assets/images/system/ico-system-72-feedback-check-blue.svg');
+        }
+      }
+    }
+    &-alarm {
+      background-image: url('/public/assets/images/system/ico-system-72-alarm.svg');
+    }
+  }
+
+  &-system-80 {
+    &-default-nodata {
+      background-image: url('/public/assets/images/system/ico-system-80-default-nodata.svg');
+    }
+  }
+
+  &-system-180 {
+    &-error {
+      background-image: url('/public/assets/images/system/ico-system-180-error.svg');
+    }
+    &-open {
+      background-image: url('/public/assets/images/system/ico-system-180-open.svg');
+    }
+  }
+
+  &-system-200 {
+    &-home {
+      background-image: url('/public/assets/images/system/ico-system-200-home.svg');
+    }
+    &-agent {
+      background-image: url('/public/assets/images/system/ico-system-200-agent.svg');
+    }
+  }
+
+  &-builder-node-20 {
+    &-categorizer {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-categorizer.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-categorizer-disabled.svg');
+      }
+    }
+
+    &-code {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-code.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-code-disabled.svg');
+      }
+    }
+
+    &-compress {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-compress.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-compress-disabled.svg');
+      }
+    }
+
+    &-filter {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-filter.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-filter-disabled.svg');
+      }
+    }
+
+    &-generator {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-generator.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-generator-disabled.svg');
+      }
+    }
+
+    &-input {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-input.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-input-disabled.svg');
+      }
+    }
+
+    &-note {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-note.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-note-disabled.svg');
+      }
+    }
+
+    &-output-chat {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-output-chat.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-output-chat-disabled.svg');
+      }
+    }
+
+    &-output-keys {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-output-keys.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-output-keys-disalbed.svg');
+      }
+    }
+
+    &-rerank {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-rerank.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-rerank-disabled.svg');
+      }
+    }
+
+    &-rereiever {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-rereiever.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-rereiever-disabled.svg');
+      }
+    }
+
+    &-rewriter {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-rewriter.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-rewriter-disabled.svg');
+      }
+    }
+
+    &-tool {
+      background-image: url('/public/assets/images/builder-node/ico-builder-node-20-tool.svg');
+      &-disabled {
+        background-image: url('/public/assets/images/builder-node/ico-builder-node-20-tool-disabled.svg');
+      }
+    }
+  }
+  &-lnb-menu-20 {
+    &-agent-apikey {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-agent-apikey.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-agent-apikey-on.svg');
+      }
+    }
+    &-agent-builder {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-agent-builder.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-agent-builder-on.svg');
+      }
+    }
+    &-agent-deployment {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-agent-deployment.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-agent-deployment-on.svg');
+      }
+    }
+    &-agent-list {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-Agent-list.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-Agent-list-on.svg');
+      }
+    }
+    &-data-catalog {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-data-catalog.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-data-catalog-on.svg');
+      }
+    }
+    &-data-storage {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-data-storage.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-data-storage-on.svg');
+      }
+    }
+    &-finetuning {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-finetuning.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-finetuning-on.svg');
+      }
+    }
+    &-home-dashboard {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-home-dashboard.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-home-dashboard-on.svg');
+      }
+    }
+    &-home-modelgarden {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-home-modelgarden.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-home-modelgarden-on.svg');
+      }
+    }
+    &-log {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-log.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-log-on.svg');
+      }
+    }
+    &-manage-access {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-access.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-access-on.svg');
+      }
+    }
+    &-manage-authority {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-authority.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-authority-on.svg');
+      }
+    }
+    &-manage-filter {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-filter.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-filter-on.svg');
+      }
+    }
+    &-manage-group {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-group.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-group-on.svg');
+      }
+    }
+    &-manage-history {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-history.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-history-on.svg');
+      }
+    }
+    &-manage-project {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-project.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-project-on.svg');
+      }
+    }
+    &-manage-resource {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-resource.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-resource-on.svg');
+      }
+    }
+    &-manage-right {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-right.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-right-on.svg');
+      }
+    }
+    &-manage-safety {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-safety.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-safety-on.svg');
+      }
+    }
+    &-manage-user {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-user.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-manage-user-on.svg');
+      }
+    }
+    &-model-catalog {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-catalog.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-catalog-on.svg');
+      }
+    }
+    &-model-deployment {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-deployment.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-deployment-on.svg');
+      }
+    }
+    &-model-evaluation {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-evaluation.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-evaluation-on.svg');
+      }
+    }
+    &-model-playground {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-playground.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-model-playground-on.svg');
+      }
+    }
+    &-mornitoring {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-mornitoring.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-mornitoring-on.svg');
+      }
+    }
+    &-notice {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-notice.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-notice-on.svg');
+      }
+    }
+    &-playground {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-playground.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-playground-on.svg');
+      }
+    }
+    &-prompt-fewshot {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-prompt-fewshot.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-prompt-fewshot-on.svg');
+      }
+    }
+    &-prompt-inference {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-prompt-inference.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-prompt-inference-on.svg');
+      }
+    }
+    &-tool {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-tool.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-tool-on.svg');
+      }
+    }
+    &-guardrail {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-guardrail.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-guardrail-on.svg');
+      }
+    }
+    &-workflow {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-workflow.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-workflow-on.svg');
+      }
+    }
+    &-assessment {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-assessment.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-assessment-on.svg');
+      }
+    }
+    &-master {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-ai.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-ai-on.svg');
+      }
+    }
+    &-operate {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-operate.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-operate-on.svg');
+      }
+    }
+    &-ide {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-ide.svg');
+      &-on {
+        background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-20-ide-on.svg');
+      }
+    }
+  }
+  &-lnb-menu-24 {
+    &-close {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-24-close.svg');
+    }
+    &-open {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-24-open.svg');
+    }
+  }
+
+  /* 32px - accent */
+  &-lnb-menu-32-accent {
+    &-agent-1 {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-agent-1.svg');
+    }
+    &-agent-2 {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-agent-2.svg');
+    }
+    &-data-2 {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-data-2.svg');
+    }
+    &-develop {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-develop.svg');
+    }
+    &-finetuning {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-finetuning.svg');
+    }
+    &-home {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-home.svg');
+    }
+    &-log {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-log.svg');
+    }
+    &-management {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-management.svg');
+    }
+    &-model {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-model.svg');
+    }
+    &-mornitoring {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-mornitoring.svg');
+    }
+    &-notice {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-notice.svg');
+    }
+    &-playground {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-playground.svg');
+    }
+    &-prompt {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-accent-prompt.svg');
+    }
+  }
+
+  /* 32px - default */
+  &-lnb-menu-32-default {
+    &-agent-1 {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-agent-1.svg');
+    }
+    &-agent-2 {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-agent-2.svg');
+    }
+    &-data-2 {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-data-2.svg');
+    }
+    &-develop {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-develop.svg');
+    }
+    &-finetuning {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-finetuning.svg');
+    }
+    &-home {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-home.svg');
+    }
+    &-log {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-log.svg');
+    }
+    &-management {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-management.svg');
+    }
+    &-model {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-model.svg');
+    }
+    &-mornitoring {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-mornitoring.svg');
+    }
+    &-notice {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-notice.svg');
+    }
+    &-playground {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-playground.svg');
+    }
+    &-prompt {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-32-default-prompt.svg');
+    }
+  }
+
+  /* 40px */
+  &-lnb-menu-40 {
+    &-delete {
+      background-image: url('/public/assets/images/system/ico-system-48-delete.svg');
+    }
+  }
+
+  /* gnb */
+  &-gnb-32 {
+    &-alarm {
+      background-image: url('/public/assets/images/gnb/ico-gnb-32-alarm.svg');
+      &-on {
+        background-image: url('/public/assets/images/gnb/ico-gnb-32-alarm-on.svg');
+      }
+    }
+    &-setting {
+      background-image: url('/public/assets/images/gnb/ico-gnb-32-setting.svg');
+    }
+  }
+
+  /* lnb toggle */
+  &-lnb-24 {
+    &-toggle-close {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-24-close.svg');
+    }
+    &-toggle-open {
+      background-image: url('/public/assets/images/lnb-menu/ico-lnb-menu-24-open.svg');
+    }
+  }
+
+  /** 상태 아이콘 */
+
+  &-blue-check {
+    background-image: url('/public/assets/images/grid/ico-blue-check.svg');
+  }
+  &-gray-hipen {
+    background-image: url('/public/assets/images/grid/ico-gray-hipen.svg');
+  }
+  &-green-point {
+    background-image: url('/public/assets/images/grid/ico-green-point.svg');
+  }
+  &-orange-emark {
+    background-image: url('/public/assets/images/grid/ico-orange-emark.svg');
+  }
+  &-orange-emark-tra {
+    background-image: url('/public/assets/images/grid/ico-orange-emark-tra.svg');
+  }
+  &-purple-check {
+    background-image: url('/public/assets/images/grid/ico-purple-check.svg');
+  }
+  &-red-emark {
+    background-image: url('/public/assets/images/grid/ico-red-emark.svg');
+  }
+
+  /* ===========================================================
+  * 상태 아이콘
+  * - 크기 : 16px x 16px
+  * - background-image 로 SVG 지정
+  * - aria-hidden="true" 사용 (접근성 보조용)
+  * =========================================================== */
+  &-status {
+    /* ====== 아이콘 파일 매핑 ====== */
+    &-neutral {
+      /* 중립(회색, 하이픈) 동그라미 */
+      background-image: url('/public/assets/images/grid/ico-gray-hipen.svg');
+    }
+    &-low {
+      /* 안전(녹색, 점) 동그라미 */
+      background-image: url('/public/assets/images/grid/ico-green-point.svg');
+    }
+    &-medium {
+      /* 주의(파랑, 체크) 동그라미*/
+      background-image: url('/public/assets/images/grid/ico-blue-check.svg');
+    }
+    &-high {
+      /* 경고(주황, 느낌표 동그라미) */
+      background-image: url('/public/assets/images/grid/ico-orange-emark.svg');
+    }
+    &-high2 {
+      /* 경고2(주황, 느낌표 삼각형) */
+      background-image: url('/public/assets/images/grid/ico-orange-emark-tra.svg');
+    }
+    &-critical {
+      /* 위험(빨강, 느낌표 동그라미) */
+      background-image: url('/public/assets/images/grid/ico-red-emark.svg');
+    }
+    &-special {
+      /* 특수(보라, 체크) 동그라미 */
+      background-image: url('/public/assets/images/grid/ico-purple-check.svg');
+    }
+    &-warning {
+      /* 위험 아이콘다름 (빨강, 느낌표 동그라미) */
+      background-image: url('/public/assets/images/common/ico-red-error-mark.svg');
+    }
+  }
+
+  &-gnb-16 {
+    &-open-group {
+      background-image: url('/public/assets/images/gnb/ico-gnb-16-group.svg');
+    }
+  }
+  &-gnb-24 {
+    &-project-box {
+      background-image: url('/public/assets/images/gnb/ico-gnb-24-projectbox.svg');
+    }
+    &-people-group {
+      background-image: url('/public/assets/images/gnb/ico-gnb-24-people-group.svg');
+    }
+  }
+
+  &-action {
+    &-more {
+      background-image: url('/public/assets/images/common/ico-action-more.svg');
+    }
+  }
+
+  &-model-24 {
+    &-hugging-face {
+      background-image: url('/public/assets/images/model/ico-model-64--hugging-face.svg');
+    }
+  }
+}
+
+.test-pagenav {
+  color: black;
+}
